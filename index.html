@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>charge2go — Batería, justo cuando la necesitas</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<style>
+/* ─── RESET & BASE ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: #080D17; color: #E8EDF2; overflow-x: hidden; }
+
+/* ─── SCROLL PROGRESS ──────────────────────────────────────── */
+.progress-bar { position: fixed; top: 0; left: 0; height: 2px; background: linear-gradient(90deg, #C8E830, #a8c820); z-index: 9999; width: 0%; transition: width .08s linear; }
+
+/* ─── NAV ───────────────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 60px;
+  background: rgba(8,13,23,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: background .3s;
+}
+nav.scrolled { background: rgba(8,13,23,0.97); }
+.logo-img { height: 30px; display: block; }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  color: #DEEAF8; text-decoration: none; font-size: 14px; font-weight: 500;
+  position: relative; padding-bottom: 2px;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+  height: 1px; background: #C8E830; transform: scaleX(0); transition: transform .2s;
+}
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-cta {
+  background: #C8E830; color: #080D17; font-size: 13px; font-weight: 700;
+  padding: 9px 20px; border-radius: 8px; text-decoration: none;
+  transition: transform .15s, box-shadow .15s;
+  box-shadow: 0 0 0 0 rgba(200,232,48,0);
+}
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(200,232,48,0.35); }
+
+/* ─── HERO ──────────────────────────────────────────────────── */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: row;
+  align-items: flex-start; gap: 40px;
+  padding: 128px 80px 80px;
+  background: #080D17;
+  position: relative; overflow: hidden;
+}
+/* Grid pattern */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(200,232,48,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,232,48,0.04) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 80% 70% at 60% 40%, black 30%, transparent 80%);
+  pointer-events: none;
+}
+/* Glow blobs */
+.hero-blob { position: absolute; border-radius: 50%; pointer-events: none; }
+.hero-blob-1 { width: 560px; height: 560px; top: -80px; right: -60px; background: radial-gradient(circle, rgba(200,232,48,0.07) 0%, transparent 65%); }
+.hero-blob-2 { width: 360px; height: 360px; bottom: 0; left: -60px; background: radial-gradient(circle, rgba(222,234,248,0.05) 0%, transparent 65%); }
+
+.hero-content { position: relative; z-index: 1; flex: 1; max-width: 600px; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: #C8E830;
+  border: 1px solid rgba(200,232,48,0.25);
+  background: rgba(200,232,48,0.06);
+  padding: 6px 14px; border-radius: 100px; margin-bottom: 28px;
+}
+.hero-badge-dot { width: 6px; height: 6px; background: #C8E830; border-radius: 50%; box-shadow: 0 0 6px #C8E830; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.6; transform:scale(1.3); } }
+.hero h1 {
+  font-size: clamp(44px, 5.5vw, 80px); font-weight: 900;
+  line-height: 1.02; letter-spacing: -2.5px;
+  margin-bottom: 24px; color: #F0F5FF;
+}
+.hero h1 em { color: #C8E830; font-style: italic; }
+.hero-sub {
+  font-size: 17px; color: rgba(222,234,248,0.75);
+  max-width: 480px; line-height: 1.7; margin-bottom: 44px;
+}
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.btn-primary {
+  background: #C8E830; color: #080D17; font-weight: 700; font-size: 15px;
+  padding: 14px 28px; border-radius: 10px; text-decoration: none;
+  transition: transform .15s, box-shadow .15s;
+  box-shadow: 0 4px 24px rgba(200,232,48,0.25);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(200,232,48,0.4); }
+.btn-ghost {
+  color: rgba(222,234,248,0.85); font-weight: 600; font-size: 15px;
+  padding: 14px 24px; border-radius: 10px; text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.18);
+  transition: color .2s, border-color .2s, background .2s;
+}
+.btn-ghost:hover { color: #fff; border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.05); }
+
+.hero-machine {
+  position: relative; z-index: 1;
+  flex: 1; display: flex; justify-content: center; align-items: flex-start;
+}
+.machine-photo {
+  width: 100%; max-width: 390px;
+  filter: drop-shadow(0 40px 100px rgba(0,0,0,0.7)) drop-shadow(0 0 60px rgba(200,232,48,0.08));
+}
+
+/* ─── STATS ──────────────────────────────────────────────────── */
+.stats { padding: 96px 80px; background: #DEEAF8; }
+.stats-inner { max-width: 1100px; margin: 0 auto; }
+.eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 14px; display: block; }
+.stats .eyebrow { color: #5E8A0A; }
+.stats h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 800; letter-spacing: -1px; margin-bottom: 60px; color: #0F1A2E; }
+.stats-grid { display: grid; grid-template-columns: repeat(3,1fr); }
+.stat-item { padding: 40px; border-right: 1px solid rgba(28,35,51,0.12); }
+.stat-item:last-child { border-right: none; }
+.stat-num {
+  font-size: 80px; font-weight: 900; color: #C8E830; line-height: 1;
+  letter-spacing: -4px; margin-bottom: 12px;
+  text-shadow: 0 0 40px rgba(200,232,48,0.3);
+}
+.stat-label { font-size: 15px; color: #4A5568; line-height: 1.6; max-width: 220px; font-weight: 500; }
+
+/* ─── HOW ─────────────────────────────────────────────────────── */
+.how { padding: 100px 80px; background: #0C1120; }
+.how-inner { max-width: 1100px; margin: 0 auto; }
+.how .eyebrow { color: #C8E830; }
+.how h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 800; letter-spacing: -1px; margin-bottom: 10px; color: #F0F5FF; }
+.how-sub { font-size: 16px; color: rgba(222,234,248,0.65); max-width: 460px; line-height: 1.7; margin-bottom: 72px; }
+.steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.step {
+  padding: 36px 32px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px;
+  position: relative;
+  transition: border-color .3s, background .3s;
+  overflow: hidden;
+}
+.step:hover { border-color: rgba(200,232,48,0.2); background: rgba(255,255,255,0.05); }
+.step-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 24px;
+}
+.step-icon-wrap {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 52px; height: 52px; border-radius: 16px;
+  background: rgba(200,232,48,0.1); border: 1px solid rgba(200,232,48,0.2);
+  color: #C8E830; flex-shrink: 0;
+}
+.step-icon-wrap svg { width: 24px; height: 24px; }
+.step-num {
+  font-size: 64px; font-weight: 900; line-height: 1;
+  color: rgba(255,255,255,0.04); letter-spacing: -4px;
+  user-select: none; margin-top: -8px;
+}
+.step h3 { font-size: 18px; font-weight: 700; color: #F0F5FF; margin-bottom: 10px; }
+.step p { font-size: 14px; color: rgba(222,234,248,0.7); line-height: 1.65; }
+
+/* ─── PRODUCT ──────────────────────────────────────────────────── */
+.product { padding: 100px 80px; background: #DEEAF8; }
+.product-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.product-visual { display: flex; align-items: center; justify-content: center; position: relative; }
+.product-visual::before {
+  content: ''; position: absolute;
+  width: 380px; height: 380px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,232,48,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.product-visual img {
+  max-width: 100%; max-height: 320px; object-fit: contain;
+  position: relative; z-index: 1;
+  filter: drop-shadow(0 20px 50px rgba(0,0,0,0.18));
+  transition: transform .4s ease;
+}
+.product-visual:hover img { transform: translateY(-6px) rotate(-1deg); }
+.product .eyebrow { color: #5E8A0A; }
+.product-content h2 { font-size: clamp(26px, 3.5vw, 40px); font-weight: 800; letter-spacing: -1px; color: #0F1A2E; margin-bottom: 16px; line-height: 1.1; }
+.product-content p { font-size: 15px; color: #4A5568; line-height: 1.75; margin-bottom: 32px; }
+.feature-list { display: flex; flex-direction: column; gap: 12px; }
+.feature-item { display: flex; align-items: flex-start; gap: 12px; }
+.feature-check {
+  flex-shrink: 0; width: 20px; height: 20px; margin-top: 1px;
+  background: rgba(200,232,48,0.15); border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+}
+.feature-check svg { width: 11px; height: 11px; color: #6FAE00; }
+.feature-item span { font-size: 14px; color: #1C2333; font-weight: 500; line-height: 1.5; }
+
+/* ─── PARTNERS ──────────────────────────────────────────────────── */
+.partners { padding: 100px 80px; background: #080D17; }
+.partners-inner { max-width: 1100px; margin: 0 auto; }
+.partners .eyebrow { color: #C8E830; }
+.partners h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 900; letter-spacing: -1.5px; line-height: 1.05; margin-bottom: 14px; color: #F0F5FF; }
+.partners h2 em { color: #C8E830; font-style: normal; }
+.partners-sub { font-size: 16px; color: rgba(222,234,248,0.65); max-width: 580px; line-height: 1.7; margin-bottom: 56px; }
+.partners-sub strong { color: #DEEAF8; }
+.partners-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+.partner-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px; padding: 36px;
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+  position: relative; overflow: hidden;
+}
+.partner-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200,232,48,0.3), transparent);
+  opacity: 0; transition: opacity .3s;
+}
+.partner-card:hover { transform: translateY(-4px); border-color: rgba(200,232,48,0.2); box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(200,232,48,0.1); }
+.partner-card:hover::before { opacity: 1; }
+.card-icon-wrap {
+  width: 52px; height: 52px; border-radius: 14px; margin-bottom: 20px;
+  background: rgba(200,232,48,0.08); border: 1px solid rgba(200,232,48,0.15);
+  display: flex; align-items: center; justify-content: center;
+}
+.card-icon { width: 26px; height: 26px; color: #C8E830; }
+.partner-card h3 { font-size: 16px; font-weight: 700; color: #F0F5FF; margin-bottom: 8px; }
+.partner-card p { font-size: 13px; color: rgba(222,234,248,0.6); line-height: 1.65; }
+
+/* ─── WHERE ───────────────────────────────────────────────────── */
+.where { padding: 80px 80px; background: #0C1120; }
+.where-inner { max-width: 1100px; margin: 0 auto; }
+.where .eyebrow { color: #C8E830; }
+.where h2 { font-size: clamp(26px, 3.5vw, 40px); font-weight: 800; letter-spacing: -1px; color: #F0F5FF; margin-bottom: 40px; }
+.sectors { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+.sector {
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px; padding: 18px 22px;
+  display: flex; align-items: center; gap: 12px;
+  transition: all .2s ease; cursor: default;
+}
+.sector:hover { background: rgba(200,232,48,0.07); border-color: rgba(200,232,48,0.25); transform: translateX(4px); }
+.sector-icon { width: 20px; height: 20px; color: #C8E830; flex-shrink: 0; }
+.sector span { font-size: 14px; font-weight: 600; color: rgba(222,234,248,0.85); }
+
+/* ─── MAP ──────────────────────────────────────────────────────── */
+.map-section { background: #080D17; padding: 100px 0 0; }
+.map-inner { max-width: 1100px; margin: 0 auto; padding: 0 80px 56px; display: flex; justify-content: space-between; align-items: flex-end; }
+.map-heading .eyebrow { color: #C8E830; }
+.map-heading h2 { font-size: clamp(26px, 4vw, 44px); font-weight: 800; letter-spacing: -1px; color: #F0F5FF; margin-bottom: 8px; }
+.map-heading p { font-size: 15px; color: rgba(222,234,248,0.55); max-width: 360px; line-height: 1.6; }
+.map-stats-aside { display: flex; flex-direction: column; gap: 20px; align-items: flex-end; }
+.map-stat-item { text-align: right; }
+.map-num { font-size: 26px; font-weight: 900; color: #C8E830; letter-spacing: -1px; line-height: 1; }
+.map-label { font-size: 11px; color: rgba(222,234,248,0.45); font-weight: 500; margin-top: 2px; }
+#map { width: 100%; height: 500px; }
+.map-divider { display: flex; background: rgba(255,255,255,0.03); border-top: 1px solid rgba(255,255,255,0.07); }
+.map-div-item { flex: 1; padding: 20px 24px; border-right: 1px solid rgba(255,255,255,0.07); text-align: center; }
+.map-div-item:last-child { border-right: none; }
+.map-div-num { font-size: 22px; font-weight: 900; color: #C8E830; letter-spacing: -0.5px; }
+.map-div-label { font-size: 11px; color: rgba(222,234,248,0.45); font-weight: 500; margin-top: 3px; }
+
+/* ─── CTA BANNER ──────────────────────────────────────────────── */
+.cta-banner {
+  background: #C8E830;
+  padding: 0 80px;
+  display: flex; align-items: stretch;
+  overflow: hidden; position: relative;
+  min-height: 280px;
+}
+.cta-banner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent, transparent 40px,
+    rgba(0,0,0,0.03) 40px, rgba(0,0,0,0.03) 80px
+  );
+}
+.cta-content { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 60px 0; }
+.cta-banner h2 { font-size: clamp(24px, 3.5vw, 42px); font-weight: 900; color: #080D17; letter-spacing: -1.5px; line-height: 1.05; margin-bottom: 10px; max-width: 560px; }
+.cta-banner p { font-size: 15px; color: rgba(8,13,23,0.65); max-width: 420px; line-height: 1.6; }
+.cta-action { position: relative; z-index: 1; display: flex; align-items: center; padding-left: 80px; }
+.btn-dark {
+  background: #080D17; color: #F0F5FF; font-weight: 700; font-size: 15px;
+  padding: 16px 32px; border-radius: 10px; text-decoration: none;
+  white-space: nowrap; transition: transform .15s, box-shadow .15s;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+}
+.btn-dark:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
+
+/* ─── CONTACT ─────────────────────────────────────────────────── */
+.contact { padding: 100px 80px; background: #0C1120; }
+.contact-inner { max-width: 680px; margin: 0 auto; }
+.contact .eyebrow { color: #C8E830; }
+.contact h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 800; letter-spacing: -1px; color: #F0F5FF; margin-bottom: 10px; }
+.contact-sub { font-size: 15px; color: rgba(222,234,248,0.55); margin-bottom: 36px; line-height: 1.6; }
+.tabs { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; background: rgba(255,255,255,0.04); padding: 5px; border-radius: 12px; width: fit-content; }
+.tab {
+  padding: 9px 18px; border-radius: 8px; border: none;
+  font-size: 13px; font-weight: 600; color: rgba(222,234,248,0.55);
+  cursor: pointer; background: transparent;
+  font-family: 'Inter', sans-serif; transition: all .2s;
+}
+.tab.active { background: #C8E830; color: #080D17; }
+.tab:hover:not(.active) { color: #DEEAF8; background: rgba(255,255,255,0.06); }
+.form-note { font-size: 13px; color: rgba(200,232,48,0.7); margin-top: 10px; margin-bottom: 28px; line-height: 1.5; font-weight: 500; }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 11px; font-weight: 700; color: rgba(222,234,248,0.45); margin-bottom: 7px; letter-spacing: .08em; text-transform: uppercase; }
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px; padding: 13px 16px;
+  color: #F0F5FF; font-size: 14px; font-family: 'Inter', sans-serif;
+  outline: none; transition: border-color .2s, background .2s;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  border-color: rgba(200,232,48,0.5); background: rgba(200,232,48,0.04);
+}
+.form-group input::placeholder, .form-group textarea::placeholder { color: rgba(222,234,248,0.25); }
+.form-group select option { background: #0C1120; }
+.form-group textarea { resize: vertical; min-height: 110px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-submit {
+  width: 100%; background: #C8E830; color: #080D17;
+  font-weight: 700; font-size: 15px; padding: 15px;
+  border-radius: 10px; border: none; cursor: pointer;
+  font-family: 'Inter', sans-serif; margin-top: 6px;
+  transition: transform .15s, box-shadow .15s;
+  box-shadow: 0 4px 20px rgba(200,232,48,0.2);
+}
+.form-submit:hover { transform: translateY(-1px); box-shadow: 0 6px 28px rgba(200,232,48,0.35); }
+.field-group { display: none; }
+.field-group.active { display: block; }
+
+/* ─── FOOTER ─────────────────────────────────────────────────── */
+footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padding: 60px 80px 40px; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px; }
+.footer-logo { height: 26px; display: block; margin-bottom: 10px; }
+.footer-tagline { font-size: 13px; color: rgba(222,234,248,0.4); }
+.footer-contact { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.footer-contact a { color: rgba(222,234,248,0.5); text-decoration: none; font-size: 13px; transition: color .2s; }
+.footer-contact a:hover { color: #DEEAF8; }
+.footer-bottom {
+  max-width: 1100px; margin: 40px auto 0; padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+}
+.footer-bottom p { font-size: 12px; color: rgba(222,234,248,0.3); }
+.footer-legal { display: flex; gap: 20px; }
+.footer-legal a { font-size: 12px; color: rgba(222,234,248,0.3); text-decoration: none; transition: color .2s; }
+.footer-legal a:hover { color: rgba(222,234,248,0.7); }
+
+/* Leaflet overrides */
+.leaflet-popup-content-wrapper { background: #0C1120 !important; border: 1px solid rgba(255,255,255,0.1) !important; border-radius: 12px !important; color: #E8EDF2 !important; box-shadow: 0 8px 32px rgba(0,0,0,.6) !important; }
+.leaflet-popup-tip { background: #0C1120 !important; }
+.leaflet-popup-content { margin: 12px 16px !important; font-family: 'Inter', sans-serif !important; font-size: 13px !important; }
+
+/* ─── ANIMATIONS ─────────────────────────────────────────────── */
+.fade-up { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; } .d3 { transition-delay: .3s; }
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .hero { flex-direction: column; padding: 130px 40px 80px; }
+  .hero-machine { width: 260px; align-self: center; }
+  .cta-banner { flex-direction: column; padding: 60px 40px; }
+  .cta-action { padding-left: 0; padding-top: 32px; }
+  .map-inner { flex-direction: column; align-items: flex-start; gap: 40px; }
+  .map-stats-aside { align-items: flex-start; flex-direction: row; flex-wrap: wrap; gap: 32px; }
+  .map-stat-item { text-align: left; }
+}
+@media (max-width: 768px) {
+  nav { padding: 14px 24px; }
+  .nav-links { display: none; }
+  .stats, .how, .partners, .where, .contact, footer { padding: 72px 24px; }
+  .product { padding: 72px 24px; }
+  .map-inner { padding: 0 24px 48px; }
+  .cta-banner { padding: 52px 24px; }
+  .stats-grid, .steps { grid-template-columns: 1fr; gap: 12px; }
+  .stat-item { border-right: none; border-bottom: 1px solid rgba(28,35,51,0.12); padding: 28px 0; }
+  .stat-item:last-child { border-bottom: none; }
+  .partners-grid, .sectors { grid-template-columns: 1fr; }
+  .product-inner { grid-template-columns: 1fr; gap: 48px; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-inner { flex-direction: column; }
+  .footer-contact { align-items: flex-start; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+  #map { height: 360px; }
+  .map-div-item { padding: 16px 12px; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#"><img src="assets/images/logo.png" alt="charge2go" class="logo-img"></a>
+  <ul class="nav-links">
+    <li><a href="#como-funciona">Cómo funciona</a></li>
+    <li><a href="#partners">Para partners</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta">Pide una máquina gratis</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-blob hero-blob-1"></div>
+  <div class="hero-blob hero-blob-2"></div>
+  <div class="hero-content fade-up">
+    <h1>Batería, <em>justo cuando</em> la necesitas.</h1>
+    <p class="hero-sub">Alquiler de power banks mediante máquinas inteligentes. Mejorando la experiencia de tu cliente cuando más importa.</p>
+    <div class="hero-ctas">
+      <a href="#contacto" class="btn-primary">Pide una máquina gratis</a>
+      <a href="#como-funciona" class="btn-ghost">¿Cómo funciona?</a>
+    </div>
+  </div>
+  <div class="hero-machine fade-up d1">
+    <img src="assets/images/maquina.png" alt="Estación charge2go" class="machine-photo">
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats" id="stats">
+  <div class="stats-inner">
+    <span class="eyebrow fade-up">La batería importa</span>
+    <h2 class="fade-up d1">Los números hablan solos.</h2>
+    <div class="stats-grid">
+      <div class="stat-item fade-up">
+        <div class="stat-num" data-target="15" data-suffix="%">0%</div>
+        <p class="stat-label">de clientes abandonan el espacio si no pueden cargar su móvil</p>
+      </div>
+      <div class="stat-item fade-up d1">
+        <div class="stat-num" data-target="25" data-suffix="%">0%</div>
+        <p class="stat-label">si miramos solo al público menor de 30 años</p>
+      </div>
+      <div class="stat-item fade-up d2">
+        <div class="stat-num" data-target="46" data-suffix="%">0%</div>
+        <p class="stat-label">se quedaría más tiempo con acceso a carga</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="como-funciona">
+  <div class="how-inner">
+    <span class="eyebrow fade-up">Cómo funciona</span>
+    <h2 class="fade-up d1">Un servicio sencillo.</h2>
+    <p class="how-sub fade-up d2">Pensado para mejorar la experiencia de cliente, sin complicar la operativa de tu negocio.</p>
+    <div class="steps">
+      <div class="step fade-up">
+        <div class="step-header">
+          <div class="step-icon-wrap">
+            <!-- Recoge: estación dispensando power bank hacia el usuario -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <!-- Cuerpo de la estación -->
+              <rect x="2" y="3" width="10" height="18" rx="2"/>
+              <!-- Ranura con power bank -->
+              <rect x="4" y="8" width="6" height="5" rx="1"/>
+              <!-- Flecha de salida (el usuario lo recoge) -->
+              <path d="M12 10.5h6"/>
+              <path d="M16 8.5l2 2-2 2"/>
+            </svg>
+          </div>
+          <span class="step-num">01</span>
+        </div>
+        <h3>Recoge tu power bank</h3>
+        <p>Sin apps ni registros — solo acerca tu tarjeta o móvil y paga contactless. Cables incluidos.</p>
+      </div>
+      <div class="step fade-up d1">
+        <div class="step-header">
+          <div class="step-icon-wrap">
+            <!-- Carga: móvil con rayo de carga -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <!-- Teléfono -->
+              <rect x="5" y="2" width="14" height="20" rx="3"/>
+              <path d="M5 5h14M5 19h14"/>
+              <!-- Rayo de carga -->
+              <path d="M13.5 8.5l-3.5 5h4.5l-3.5 5" stroke-width="1.7"/>
+            </svg>
+          </div>
+          <span class="step-num">02</span>
+        </div>
+        <h3>Carga tu móvil</h3>
+        <p>Continúa disfrutando de tu experiencia mientras tu móvil se carga.</p>
+      </div>
+      <div class="step fade-up d2">
+        <div class="step-header">
+          <div class="step-icon-wrap">
+            <!-- Devuelve: flecha insertando power bank de vuelta en la estación -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <!-- Estación receptora -->
+              <rect x="12" y="3" width="10" height="18" rx="2"/>
+              <!-- Ranura vacía esperando la devolución -->
+              <rect x="14" y="8" width="6" height="5" rx="1"/>
+              <!-- Flecha de entrada (el usuario devuelve) -->
+              <path d="M12 10.5H6"/>
+              <path d="M8 8.5L6 10.5l2 2"/>
+            </svg>
+          </div>
+          <span class="step-num">03</span>
+        </div>
+        <h3>Devuelve cuando quieras</h3>
+        <p>Devuelve la power bank en cualquier estación de la red. Se te cobrará en función del tiempo de uso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT -->
+<section class="product">
+  <div class="product-inner">
+    <div class="product-visual fade-up">
+      <img src="assets/images/bateria.png" alt="Power bank charge2go con cables incluidos">
+    </div>
+    <div class="product-content fade-up d1">
+      <span class="eyebrow">El producto</span>
+      <h2>Todo lo que necesitas, en una sola pieza.</h2>
+      <p>Nuestra power bank viene lista para usar. Sin adaptadores, sin cables olvidados. Funciona con cualquier móvil y se devuelve en cualquier estación de la red.</p>
+      <div class="feature-list">
+        <div class="feature-item">
+          <div class="feature-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span>Cables incluidos: USB-C, Lightning y micro-USB</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span>Compatible con cualquier smartphone</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span>Devolución flexible en cualquier estación</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span>Sin app ni registro — paga y ya</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="partners" id="partners">
+  <div class="partners-inner">
+    <span class="eyebrow fade-up">Para partners</span>
+    <h2 class="fade-up d1">Ofrece carga de móvil en tu local.<br><em>Sin invertir un euro.</em></h2>
+    <p class="partners-sub fade-up d2">Añade un servicio que tus clientes necesitan de verdad. charge2go instala la máquina, gestiona el mantenimiento y atiende al usuario. Tú solo ofreces el espacio y <strong>te llevas tu parte de cada alquiler</strong>.</p>
+    <div class="partners-grid">
+      <div class="partner-card fade-up">
+        <div class="card-icon-wrap"><svg class="card-icon" viewBox="0 0 44 44" fill="none"><path d="M22 4L4 14v16l18 10 18-10V14L22 4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M22 44V24M4 14l18 10 18-10" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+        <h3>Instalación en menos de 30 min</h3>
+        <p>Solo necesita un enchufe estándar. Sin obras, sin técnicos, sin complicaciones.</p>
+      </div>
+      <div class="partner-card fade-up d1">
+        <div class="card-icon-wrap"><svg class="card-icon" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="17" stroke="currentColor" stroke-width="1.8"/><path d="M22 12v2M22 30v2M12 22h2M30 22h2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="22" cy="22" r="5" stroke="currentColor" stroke-width="1.8"/></svg></div>
+        <h3>Ingresos adicionales sin inversión</h3>
+        <p>Modelo de reparto de beneficios transparente. Sin costes fijos ni inversión inicial.</p>
+      </div>
+      <div class="partner-card fade-up d2">
+        <div class="card-icon-wrap"><svg class="card-icon" viewBox="0 0 44 44" fill="none"><rect x="6" y="10" width="32" height="24" rx="3" stroke="currentColor" stroke-width="1.8"/><circle cx="22" cy="22" r="5" stroke="currentColor" stroke-width="1.8"/><path d="M6 16h32M6 28h32" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <h3>Monitorización remota</h3>
+        <p>Control de uso, incidencias y reposición. Todo gestionado por charge2go.</p>
+      </div>
+      <div class="partner-card fade-up d3">
+        <div class="card-icon-wrap"><svg class="card-icon" viewBox="0 0 44 44" fill="none"><path d="M22 6C13.16 6 6 13.16 6 22s7.16 16 16 16 16-7.16 16-16S30.84 6 22 6z" stroke="currentColor" stroke-width="1.8"/><path d="M16 22l4 4 8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Zero gestión para tu equipo</h3>
+        <p>La atención al usuario la gestiona charge2go. Tu personal no interviene en ningún momento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHERE -->
+<section class="where">
+  <div class="where-inner">
+    <span class="eyebrow fade-up">Dónde encajamos</span>
+    <h2 class="fade-up d1">Colaboramos con</h2>
+    <div class="sectors">
+      <div class="sector fade-up"><svg class="sector-icon" viewBox="0 0 24 24" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 22V12h6v10" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span>Hostelería y hoteles</span></div>
+      <div class="sector fade-up d1"><svg class="sector-icon" viewBox="0 0 24 24" fill="none"><path d="M18 8h1a4 4 0 010 8h-1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z" stroke="currentColor" stroke-width="1.8"/><path d="M6 1v3M10 1v3M14 1v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Bares y discotecas</span></div>
+      <div class="sector fade-up d2"><svg class="sector-icon" viewBox="0 0 24 24" fill="none"><path d="M6 4v16M18 4v16M6 12h12M2 8h4M18 8h4M2 16h4M18 16h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Gimnasios</span></div>
+      <div class="sector fade-up"><svg class="sector-icon" viewBox="0 0 24 24" fill="none"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Hospitales y clínicas</span></div>
+      <div class="sector fade-up d1"><svg class="sector-icon" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span>Estaciones y aeropuertos</span></div>
+      <div class="sector fade-up d2"><svg class="sector-icon" viewBox="0 0 24 24" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span>Eventos y festivales</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="map-section">
+  <div class="map-inner">
+    <div class="map-heading fade-up">
+      <span class="eyebrow">Red de máquinas</span>
+      <h2>Estamos donde la gente se mueve.</h2>
+      <p>Expandiéndonos ciudad a ciudad, empezando por Madrid.</p>
+    </div>
+    <div class="map-stats-aside fade-up d1">
+      <div class="map-stat-item"><div class="map-num">300+</div><div class="map-label">Puntos de carga activos</div></div>
+      <div class="map-stat-item"><div class="map-num">6–12</div><div class="map-label">Power banks por máquina</div></div>
+      <div class="map-stat-item"><div class="map-num">&lt;30'</div><div class="map-label">Instalación en tu local</div></div>
+    </div>
+  </div>
+  <div id="map"></div>
+  <div class="map-divider">
+    <div class="map-div-item"><div class="map-div-num">300+</div><div class="map-div-label">Puntos de carga activos</div></div>
+    <div class="map-div-item"><div class="map-div-num">6–12</div><div class="map-div-label">Power banks por máquina</div></div>
+    <div class="map-div-item"><div class="map-div-num">&lt;30'</div><div class="map-div-label">Instalación en tu local</div></div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner fade-up">
+  <div class="cta-content">
+    <h2>¿Tienes un espacio con tráfico de personas?</h2>
+    <p>Pide tu máquina charge2go gratis y genera ingresos pasivos sin inversión ni gestión.</p>
+  </div>
+  <div class="cta-action">
+    <a href="#contacto" class="btn-dark">Habla con nosotros →</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contacto">
+  <div class="contact-inner">
+    <span class="eyebrow fade-up">Contacto</span>
+    <h2 class="fade-up d1">¿Hablamos?</h2>
+    <p class="contact-sub fade-up d2">Cuéntanos tu situación y te respondemos en menos de 24h.</p>
+    <div class="tabs fade-up">
+      <button class="tab active" onclick="switchTab('partner',this)">Quiero ser partner</button>
+      <button class="tab" onclick="switchTab('info',this)">Información general</button>
+      <button class="tab" onclick="switchTab('soporte',this)">Soporte usuario</button>
+    </div>
+    <p class="form-note" id="form-note">Pide la instalación de una máquina de alquiler de power banks gratis.</p>
+    <form action="https://formspree.io/f/[TU_ID]" method="POST">
+      <input type="hidden" name="_subject" id="form-subject" value="Nuevo partner - charge2go">
+      <div class="field-group active" id="fields-partner">
+        <div class="form-row">
+          <div class="form-group"><label>Nombre</label><input type="text" name="nombre" placeholder="Tu nombre" required></div>
+          <div class="form-group"><label>Empresa / Local</label><input type="text" name="empresa" placeholder="Nombre del negocio" required></div>
+        </div>
+        <div class="form-group"><label>Tipo de negocio</label><select name="tipo"><option value="">Selecciona...</option><option>Cafetería / Restauración</option><option>Bar / Discoteca</option><option>Hotel</option><option>Hospital / Clínica</option><option>Estación / Aeropuerto</option><option>Evento / Festival</option><option>Otro</option></select></div>
+        <div class="form-row">
+          <div class="form-group"><label>Teléfono</label><input type="tel" name="telefono" placeholder="+34 600 000 000"></div>
+          <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="tu@email.com" required></div>
+        </div>
+        <div class="form-group"><label>Mensaje (opcional)</label><textarea name="mensaje" placeholder="Cuéntanos algo sobre tu espacio..."></textarea></div>
+      </div>
+      <div class="field-group" id="fields-info">
+        <div class="form-group"><label>Nombre</label><input type="text" name="nombre" placeholder="Tu nombre"></div>
+        <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="tu@email.com" required></div>
+        <div class="form-group"><label>Mensaje</label><textarea name="mensaje" placeholder="¿En qué podemos ayudarte?" required></textarea></div>
+      </div>
+      <div class="field-group" id="fields-soporte">
+        <div class="form-group"><label>Nombre</label><input type="text" name="nombre" placeholder="Tu nombre"></div>
+        <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="tu@email.com" required></div>
+        <div class="form-group"><label>Problema</label><textarea name="problema" placeholder="Describe el problema con tu alquiler..." required></textarea></div>
+      </div>
+      <button type="submit" class="form-submit">Enviar mensaje →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <img src="assets/images/logo.png" alt="charge2go" class="footer-logo">
+      <div class="footer-tagline">Batería, justo cuando la necesitas.</div>
+    </div>
+    <div class="footer-contact">
+      <a href="mailto:hola@charge2go.io">hola@charge2go.io</a>
+      <a href="tel:+34638314792">+34 638 314 792</a>
+      <a href="tel:+34687242903">+34 687 242 903</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 charge2go. Todos los derechos reservados.</p>
+    <div class="footer-legal">
+      <a href="#">Política de privacidad</a>
+      <a href="#">Aviso legal</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+// Scroll progress bar
+const progressBar = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const pct = scrollY / (document.body.scrollHeight - innerHeight) * 100;
+  progressBar.style.width = pct + '%';
+});
+
+// Nav scrolled state
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60));
+
+// Intersection observer for fade-up
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+// Counting stats animation
+function animateCount(el) {
+  const target = parseInt(el.dataset.target);
+  const suffix = el.dataset.suffix || '';
+  const duration = 1800;
+  let start = null;
+  const step = ts => {
+    if (!start) start = ts;
+    const progress = Math.min((ts - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(eased * target) + suffix;
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+const countObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      animateCount(e.target);
+      countObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.stat-num[data-target]').forEach(el => countObs.observe(el));
+
+// Form tabs
+const formNotes = {
+  partner: 'Pide la instalación de una máquina de alquiler de power banks gratis.',
+  info: 'Te respondemos en menos de 24h con toda la información que necesitas.',
+  soporte: 'Nuestro equipo gestionará tu incidencia lo antes posible.'
+};
+function switchTab(t, btn) {
+  document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+  document.querySelectorAll('.field-group').forEach(x => x.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('fields-' + t).classList.add('active');
+  document.getElementById('form-subject').value = { partner: 'Nuevo partner - charge2go', info: 'Info general - charge2go', soporte: 'Soporte - charge2go' }[t];
+  document.getElementById('form-note').textContent = formNotes[t];
+}
+
+// Map
+const map = L.map('map', { scrollWheelZoom: false, zoomControl: true }).setView([40.42, -3.70], 13);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution: '© <a href="https://openstreetmap.org">OpenStreetMap</a> © <a href="https://carto.com">CARTO</a>',
+  maxZoom: 19
+}).addTo(map);
+
+const icon = L.divIcon({
+  className: '',
+  html: '<div style="width:10px;height:10px;background:#C8E830;border-radius:50%;border:2px solid #080D17;box-shadow:0 0 8px rgba(200,232,48,0.7)"></div>',
+  iconSize: [10,10], iconAnchor: [5,5]
+});
+
+// Seeded random
+let seed = 7319;
+const rnd = () => { seed = (seed * 16807 + 0) % 2147483647; return (seed - 1) / 2147483646; };
+
+const tipos = ['Bar','Discoteca','Restaurante','Hotel','Cafetería','Gimnasio','Centro comercial'];
+const ciudades = [
+  { name:'Madrid',     lat:40.4168, lng:-3.7038, n:150, r:0.085 },
+  { name:'Valladolid', lat:41.6523, lng:-4.7245, n:45,  r:0.040 },
+  { name:'Segovia',    lat:40.9429, lng:-4.1088, n:28,  r:0.025 },
+  { name:'Ávila',      lat:40.6565, lng:-4.6992, n:22,  r:0.022 },
+  { name:'Vigo',       lat:42.2314, lng:-8.7124, n:38,  r:0.040 },
+  { name:'Santiago',   lat:42.8782, lng:-8.5448, n:30,  r:0.030 },
+];
+
+ciudades.forEach(({ name, lat, lng, n, r }) => {
+  for (let i = 0; i < n; i++) {
+    const angle = rnd() * 2 * Math.PI;
+    const dist  = Math.sqrt(rnd()) * r;
+    const tipo  = tipos[Math.floor(rnd() * tipos.length)];
+    L.marker([lat + dist * Math.cos(angle), lng + dist * Math.sin(angle) * 1.5], { icon })
+      .bindPopup(`<strong style="color:#C8E830">charge2go</strong><br><span style="color:rgba(222,234,248,0.6)">${tipo}</span><br><span style="color:#DEEAF8">${name}</span>`)
+      .addTo(map);
+  }
+});
+</script>
+</body>
+</html>

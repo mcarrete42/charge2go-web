@@ -1,0 +1,14 @@
+.DS_Store
+.claude/
+*.orig
+
+# Raw source assets (keep only processed versions)
+bateria.jpg
+"Asset 15@4x-100.jpg"
+Dark.png
+charge2go_Logo_POS.png
+"maquina sola_v2.png"
+
+# Old HTML files (archived in archive/)
+charge2go.html
+charge2go-v2.html
