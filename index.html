@@ -3,7 +3,124 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>charge2go — Batería, justo cuando la necesitas</title>
+
+<!-- ─── SEO BÁSICO ─────────────────────────────────────────────── -->
+<title>charge2go — Alquiler de power banks en bares, restaurantes y hoteles</title>
+<meta name="description" content="charge2go es una red de alquiler de power banks portátiles mediante estaciones en bares, restaurantes, discotecas y hoteles. Recoge una batería, carga tu móvil y devuélvela en cualquier punto. Desde 3€.">
+<meta name="keywords" content="alquiler power bank, power bank compartido, cargar móvil bar, cargar móvil restaurante, batería portátil alquiler, charge2go, power bank Madrid, sharing battery Spain">
+<meta name="author" content="charge2go">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mcarrete42.github.io/charge2go-web/">
+
+<!-- ─── OPEN GRAPH (redes sociales + ChatGPT / Bing) ──────────── -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="charge2go">
+<meta property="og:url" content="https://mcarrete42.github.io/charge2go-web/">
+<meta property="og:title" content="charge2go — Alquiler de power banks en tu local">
+<meta property="og:description" content="Red de alquiler de power banks portátiles en bares, restaurantes, discotecas y hoteles. Sin apps, pago contactless, devolución en cualquier estación. Desde 3€/hora.">
+<meta property="og:image" content="https://mcarrete42.github.io/charge2go-web/assets/images/logo.png">
+<meta property="og:locale" content="es_ES">
+
+<!-- ─── TWITTER CARD ──────────────────────────────────────────── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="charge2go — Alquiler de power banks en tu local">
+<meta name="twitter:description" content="Red de alquiler de power banks en bares, restaurantes y hoteles. Pago contactless, sin registro, cables incluidos. Desde 3€.">
+<meta name="twitter:image" content="https://mcarrete42.github.io/charge2go-web/assets/images/logo.png">
+
+<!-- ─── SCHEMA.ORG — JSON-LD (Google + Claude + ChatGPT) ─────── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://mcarrete42.github.io/charge2go-web/#organization",
+      "name": "charge2go",
+      "url": "https://mcarrete42.github.io/charge2go-web/",
+      "logo": "https://mcarrete42.github.io/charge2go-web/assets/images/logo.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "hola@charge2go.io",
+        "telephone": "+34638314792",
+        "contactType": "customer service",
+        "areaServed": "ES",
+        "availableLanguage": "Spanish"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "España"
+      },
+      "description": "Red de alquiler de power banks portátiles mediante estaciones físicas instaladas en locales de hostelería, ocio y hoteles en España."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://mcarrete42.github.io/charge2go-web/#website",
+      "url": "https://mcarrete42.github.io/charge2go-web/",
+      "name": "charge2go",
+      "publisher": { "@id": "https://mcarrete42.github.io/charge2go-web/#organization" },
+      "inLanguage": "es-ES"
+    },
+    {
+      "@type": "Product",
+      "name": "Alquiler de power bank charge2go",
+      "description": "Power bank portátil con cables incluidos (USB-C, Lightning, micro-USB) disponible en estaciones físicas en locales de hostelería y ocio. Sin registro, pago contactless.",
+      "brand": { "@type": "Brand", "name": "charge2go" },
+      "offers": [
+        { "@type": "Offer", "name": "1 hora", "price": "3.00", "priceCurrency": "EUR" },
+        { "@type": "Offer", "name": "3 horas", "price": "5.00", "priceCurrency": "EUR" },
+        { "@type": "Offer", "name": "10 horas", "price": "10.00", "priceCurrency": "EUR" },
+        { "@type": "Offer", "name": "24 horas", "price": "35.00", "priceCurrency": "EUR" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cómo funciona el alquiler de power banks de charge2go?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Acerca tu tarjeta o móvil a la estación charge2go y paga contactless. Recoge la power bank con cables incluidos, carga tu móvil y devuélvela en cualquier estación de la red cuando quieras. Se cobra según el tiempo de uso, desde 3€ la primera hora."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto cuesta alquilar una power bank?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El precio es de 3€ por 1 hora, 5€ por 3 horas, 10€ por 10 horas y 35€ por 24 horas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Dónde puedo devolver la power bank?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Puedes devolver la power bank en cualquier estación de la red charge2go, no hace falta devolverla en el mismo local donde la recogiste."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Necesito descargar una app para usar charge2go?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. charge2go no requiere ninguna aplicación. Solo acerca tu tarjeta o móvil a la estación y paga contactless."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo instalar una estación charge2go en mi local?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. charge2go instala las estaciones gratis en bares, restaurantes, discotecas, hoteles y otros locales. El local solo necesita ofrecer espacio y conexión a corriente. Además, recibe una comisión por cada alquiler."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
 <style>
@@ -400,7 +517,7 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
 
 <!-- NAV -->
 <nav id="navbar">
-  <a href="#"><img src="assets/images/logo.png" alt="charge2go" class="logo-img"></a>
+  <a href="#"><img src="assets/images/logo.png" alt="charge2go — alquiler de power banks" class="logo-img"></a>
   <ul class="nav-links">
     <li><a href="#como-funciona">Cómo funciona</a></li>
     <li><a href="#partners">Para partners</a></li>
@@ -422,7 +539,7 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
     </div>
   </div>
   <div class="hero-machine fade-up d1">
-    <img src="assets/images/maquina.png" alt="Estación charge2go" class="machine-photo">
+    <img src="assets/images/maquina.png" alt="Estación de alquiler de power banks charge2go instalada en un local" class="machine-photo">
   </div>
 </section>
 
@@ -518,7 +635,7 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
 <section class="product">
   <div class="product-inner">
     <div class="product-visual fade-up">
-      <img src="assets/images/bateria.png" alt="Power bank charge2go con cables incluidos">
+      <img src="assets/images/bateria.png" alt="Power bank portátil charge2go con cables USB-C, Lightning y micro-USB incluidos">
     </div>
     <div class="product-content fade-up d1">
       <span class="eyebrow">El producto</span>
@@ -671,7 +788,7 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
 <footer>
   <div class="footer-inner">
     <div>
-      <img src="assets/images/logo.png" alt="charge2go" class="footer-logo">
+      <img src="assets/images/logo.png" alt="charge2go" class="footer-logo" loading="lazy">
       <div class="footer-tagline">Batería, justo cuando la necesitas.</div>
     </div>
     <div class="footer-contact">
