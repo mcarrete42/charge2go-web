@@ -761,10 +761,14 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
       <button class="tab" onclick="switchTab('soporte',this)">Soporte usuario</button>
     </div>
     <p class="form-note" id="form-note">Pide la instalación de una máquina de alquiler de power banks gratis.</p>
-    <form action="https://formspree.io/f/xgonzeba" method="POST">
+    <div id="form-success" style="display:none; text-align:center; padding: 48px 0;">
+      <div style="font-size:40px; margin-bottom:16px;">✓</div>
+      <h3 style="color:#C8E830; font-size:22px; font-weight:800; margin-bottom:10px;">Mensaje enviado</h3>
+      <p style="color:rgba(222,234,248,0.7); font-size:15px;">Te respondemos en menos de 24h.</p>
+    </div>
+    <form id="contact-form" action="https://formspree.io/f/xgonzeba" method="POST">
       <input type="hidden" name="_subject" id="form-subject" value="Nuevo partner request">
       <input type="hidden" name="_replyto" id="form-replyto">
-      <input type="hidden" name="_next" value="https://charge2go.io">
       <div class="field-group active" id="fields-partner">
         <div class="form-row">
           <div class="form-group"><label>Nombre</label><input type="text" name="nombre" placeholder="Tu nombre" required></div>
@@ -787,7 +791,7 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
         <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="tu@email.com" required></div>
         <div class="form-group"><label>Problema</label><textarea name="problema" placeholder="Describe el problema con tu alquiler..." required></textarea></div>
       </div>
-      <button type="submit" class="form-submit">Enviar mensaje →</button>
+      <button type="submit" class="form-submit" id="form-btn">Enviar mensaje →</button>
     </form>
   </div>
 </section>
@@ -874,6 +878,31 @@ function switchTab(t, btn) {
   document.getElementById('form-subject').value = { partner: 'Nuevo partner request', info: 'Nuevo request de info', soporte: 'Nuevo request de soporte' }[t];
   document.getElementById('form-note').textContent = formNotes[t];
 }
+
+// AJAX form submission
+document.getElementById('contact-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('form-btn');
+  btn.textContent = 'Enviando...';
+  btn.disabled = true;
+  try {
+    const res = await fetch(this.action, {
+      method: 'POST',
+      body: new FormData(this),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      document.getElementById('contact-form').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    } else {
+      btn.textContent = 'Error al enviar. Inténtalo de nuevo.';
+      btn.disabled = false;
+    }
+  } catch {
+    btn.textContent = 'Error al enviar. Inténtalo de nuevo.';
+    btn.disabled = false;
+  }
+});
 
 // Map
 const map = L.map('map', { scrollWheelZoom: false, zoomControl: true }).setView([40.42, -3.70], 13);
