@@ -886,20 +886,21 @@ document.getElementById('contact-form').addEventListener('submit', async functio
   btn.textContent = 'Enviando...';
   btn.disabled = true;
   try {
-    const res = await fetch(this.action, {
+    const res = await fetch('https://formspree.io/f/xgonzeba', {
       method: 'POST',
       body: new FormData(this),
       headers: { 'Accept': 'application/json' }
     });
+    const data = await res.json();
     if (res.ok) {
       document.getElementById('contact-form').style.display = 'none';
       document.getElementById('form-success').style.display = 'block';
     } else {
-      btn.textContent = 'Error al enviar. Inténtalo de nuevo.';
+      btn.textContent = data.error || 'Error al enviar. Inténtalo de nuevo.';
       btn.disabled = false;
     }
-  } catch {
-    btn.textContent = 'Error al enviar. Inténtalo de nuevo.';
+  } catch(err) {
+    btn.textContent = 'Error de conexión. Inténtalo de nuevo.';
     btn.disabled = false;
   }
 });
