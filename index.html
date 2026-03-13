@@ -769,6 +769,7 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
     <form id="contact-form" action="https://formspree.io/f/xgonzeba" method="POST" novalidate>
       <input type="hidden" name="_subject" id="form-subject" value="Nuevo partner request">
       <input type="hidden" name="_replyto" id="form-replyto">
+      <input type="hidden" name="—" id="form-resumen">
       <div class="field-group active" id="fields-partner">
         <div class="form-row">
           <div class="form-group"><label>Nombre</label><input type="text" name="nombre" placeholder="Tu nombre" required></div>
@@ -892,6 +893,20 @@ document.getElementById('contact-form').addEventListener('submit', async functio
     if (!f.value.trim()) { f.focus(); valid = false; }
   });
   if (!valid) return;
+
+  // Populate summary field with key content for email readability
+  const resumen = document.getElementById('form-resumen');
+  const activeId = activeGroup.id;
+  if (activeId === 'fields-partner') {
+    resumen.name = 'Empresa';
+    resumen.value = (this.querySelector('[name="empresa"]') || {}).value || '';
+  } else if (activeId === 'fields-info') {
+    resumen.name = 'Mensaje';
+    resumen.value = (this.querySelector('#fields-info [name="mensaje"]') || {}).value || '';
+  } else if (activeId === 'fields-soporte') {
+    resumen.name = 'Problema';
+    resumen.value = (this.querySelector('[name="problema"]') || {}).value || '';
+  }
 
   btn.textContent = 'Enviando...';
   btn.disabled = true;
