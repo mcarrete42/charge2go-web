@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://charge2go.io/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
-  <url><loc>https://charge2go.io/restaurantes.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://charge2go.io/bares.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://charge2go.io/gimnasios.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://charge2go.io/hospitales.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://charge2go.io/eventos.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
 </urlset>
