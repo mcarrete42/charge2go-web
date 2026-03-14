@@ -131,7 +131,6 @@
 <link rel="apple-touch-icon" href="assets/images/logo.png">
 <meta name="theme-color" content="#080D17">
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
 <style>
 /* ─── RESET & BASE ─────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -382,12 +381,45 @@ nav.scrolled { background: rgba(8,13,23,0.97); }
 .map-stat-item { text-align: right; }
 .map-num { font-size: 26px; font-weight: 900; color: #C8E830; letter-spacing: -1px; line-height: 1; }
 .map-label { font-size: 11px; color: rgba(222,234,248,0.45); font-weight: 500; margin-top: 2px; }
-#map { width: 100%; height: 500px; }
-.map-divider { display: flex; background: rgba(255,255,255,0.03); border-top: 1px solid rgba(255,255,255,0.07); }
-.map-div-item { flex: 1; padding: 20px 24px; border-right: 1px solid rgba(255,255,255,0.07); text-align: center; }
-.map-div-item:last-child { border-right: none; }
-.map-div-num { font-size: 22px; font-weight: 900; color: #C8E830; letter-spacing: -0.5px; }
-.map-div-label { font-size: 11px; color: rgba(222,234,248,0.45); font-weight: 500; margin-top: 3px; }
+/* ─── STATIC MAP ─────────────────────────────────────────────── */
+.static-map {
+  width: 100%; height: 500px;
+  background: #060B15;
+  position: relative; overflow: hidden;
+}
+.static-map::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+.static-map::after {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  top: 43%; left: 41%;
+  transform: translate(-50%,-50%);
+  background: radial-gradient(circle, rgba(200,232,48,0.06) 0%, transparent 55%);
+  pointer-events: none;
+}
+.smap-pin {
+  position: absolute; transform: translate(-50%,-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  z-index: 1;
+}
+.smap-dot-wrap { position: relative; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; }
+.smap-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(200,232,48,0.2); border: 1px solid rgba(200,232,48,0.3); }
+.smap-pin.active .smap-dot { width: 12px; height: 12px; background: #C8E830; border: 2px solid #060B15; box-shadow: 0 0 14px rgba(200,232,48,0.7); }
+.smap-ring { position: absolute; inset: -6px; border-radius: 50%; border: 1px solid rgba(200,232,48,0.5); animation: smapRing 2.5s ease-out infinite; }
+@keyframes smapRing { 0% { transform: scale(0.4); opacity: 1; } 100% { transform: scale(2.8); opacity: 0; } }
+.smap-info { text-align: center; }
+.smap-city { display: block; font-size: 10px; font-weight: 700; color: rgba(222,234,248,0.3); letter-spacing: .08em; text-transform: uppercase; }
+.smap-pin.active .smap-city { font-size: 13px; font-weight: 800; color: #F0F5FF; letter-spacing: -.3px; text-transform: none; }
+.smap-status { display: block; font-size: 9px; font-weight: 600; color: rgba(222,234,248,0.2); letter-spacing: .08em; text-transform: uppercase; margin-top: 3px; }
+.smap-pin.active .smap-status { font-size: 10px; color: #C8E830; }
 
 /* ─── CTA BANNER ──────────────────────────────────────────────── */
 .cta-banner {
@@ -501,10 +533,6 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
 .footer-legal a { font-size: 12px; color: rgba(222,234,248,0.3); text-decoration: none; transition: color .2s; }
 .footer-legal a:hover { color: rgba(222,234,248,0.7); }
 
-/* Leaflet overrides */
-.leaflet-popup-content-wrapper { background: #0C1120 !important; border: 1px solid rgba(255,255,255,0.1) !important; border-radius: 12px !important; color: #E8EDF2 !important; box-shadow: 0 8px 32px rgba(0,0,0,.6) !important; }
-.leaflet-popup-tip { background: #0C1120 !important; }
-.leaflet-popup-content { margin: 12px 16px !important; font-family: 'Inter', sans-serif !important; font-size: 13px !important; }
 
 /* ─── ANIMATIONS ─────────────────────────────────────────────── */
 .fade-up { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
@@ -537,8 +565,7 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
   .footer-inner { flex-direction: column; }
   .footer-contact { align-items: flex-start; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
-  #map { height: 360px; }
-  .map-div-item { padding: 16px 12px; }
+  .static-map { height: 360px; }
 }
 </style>
 </head>
@@ -754,10 +781,23 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
       <div class="map-stat-item"><div class="map-num">&lt;30'</div><div class="map-label">Instalación en tu local</div></div>
     </div>
   </div>
-  <div id="map"></div>
-  <div class="map-divider">
-    <div class="map-div-item"><div class="map-div-num">6–12</div><div class="map-div-label">Power banks por máquina</div></div>
-    <div class="map-div-item"><div class="map-div-num">&lt;30'</div><div class="map-div-label">Instalación en tu local</div></div>
+  <div class="static-map">
+    <div class="smap-pin active" style="left:41%;top:43%">
+      <div class="smap-dot-wrap"><div class="smap-ring"></div><div class="smap-dot"></div></div>
+      <div class="smap-info"><span class="smap-city">Madrid</span><span class="smap-status">Activo ahora</span></div>
+    </div>
+    <div class="smap-pin soon" style="left:84%;top:31%">
+      <div class="smap-dot-wrap"><div class="smap-dot"></div></div>
+      <div class="smap-info"><span class="smap-city">Barcelona</span><span class="smap-status">Próximamente</span></div>
+    </div>
+    <div class="smap-pin soon" style="left:66%;top:58%">
+      <div class="smap-dot-wrap"><div class="smap-dot"></div></div>
+      <div class="smap-info"><span class="smap-city">Valencia</span><span class="smap-status">Próximamente</span></div>
+    </div>
+    <div class="smap-pin soon" style="left:23%;top:80%">
+      <div class="smap-dot-wrap"><div class="smap-dot"></div></div>
+      <div class="smap-info"><span class="smap-city">Sevilla</span><span class="smap-status">Próximamente</span></div>
+    </div>
   </div>
 </section>
 
@@ -879,14 +919,13 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
   <div class="footer-bottom">
     <p>© 2025 charge2go. Todos los derechos reservados.</p>
     <div class="footer-legal">
-      <a href="#">Política de privacidad</a>
-      <a href="#">Aviso legal</a>
-      <a href="#">Cookies</a>
+      <a href="privacidad.html">Política de privacidad</a>
+      <a href="aviso-legal.html">Aviso legal</a>
+      <a href="cookies.html">Cookies</a>
     </div>
   </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 // Scroll progress bar
 const progressBar = document.getElementById('progress');
@@ -997,43 +1036,6 @@ document.getElementById('contact-form').addEventListener('submit', async functio
   }
 });
 
-// Map
-const map = L.map('map', { scrollWheelZoom: false, zoomControl: true }).setView([40.42, -3.70], 13);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-  attribution: '© <a href="https://openstreetmap.org">OpenStreetMap</a> © <a href="https://carto.com">CARTO</a>',
-  maxZoom: 19
-}).addTo(map);
-
-const icon = L.divIcon({
-  className: '',
-  html: '<div style="width:10px;height:10px;background:#C8E830;border-radius:50%;border:2px solid #080D17;box-shadow:0 0 8px rgba(200,232,48,0.7)"></div>',
-  iconSize: [10,10], iconAnchor: [5,5]
-});
-
-// Seeded random
-let seed = 7319;
-const rnd = () => { seed = (seed * 16807 + 0) % 2147483647; return (seed - 1) / 2147483646; };
-
-const tipos = ['Bar','Discoteca','Restaurante','Hotel','Cafetería','Gimnasio','Centro comercial'];
-const ciudades = [
-  { name:'Madrid',     lat:40.4168, lng:-3.7038, n:150, r:0.085 },
-  { name:'Valladolid', lat:41.6523, lng:-4.7245, n:45,  r:0.040 },
-  { name:'Segovia',    lat:40.9429, lng:-4.1088, n:28,  r:0.025 },
-  { name:'Ávila',      lat:40.6565, lng:-4.6992, n:22,  r:0.022 },
-  { name:'Vigo',       lat:42.2314, lng:-8.7124, n:38,  r:0.040 },
-  { name:'Santiago',   lat:42.8782, lng:-8.5448, n:30,  r:0.030 },
-];
-
-ciudades.forEach(({ name, lat, lng, n, r }) => {
-  for (let i = 0; i < n; i++) {
-    const angle = rnd() * 2 * Math.PI;
-    const dist  = Math.sqrt(rnd()) * r;
-    const tipo  = tipos[Math.floor(rnd() * tipos.length)];
-    L.marker([lat + dist * Math.cos(angle), lng + dist * Math.sin(angle) * 1.5], { icon })
-      .bindPopup(`<strong style="color:#C8E830">charge2go</strong><br><span style="color:rgba(222,234,248,0.6)">${tipo}</span><br><span style="color:#DEEAF8">${name}</span>`)
-      .addTo(map);
-  }
-});
 </script>
 </body>
 </html>
