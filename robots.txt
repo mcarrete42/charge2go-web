@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://charge2go.io/sitemap.xml
