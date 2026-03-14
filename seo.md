@@ -6,7 +6,7 @@
 
 ## Title
 <!-- Máximo 60 caracteres — aparece en Google y pestañas del navegador -->
-charge2go | Máquina de carga de móviles gratis para tu local — Sin inversión
+charge2go | Máquina de power banks gratis para tu local
 
 ## Description
 <!-- Máximo 155 caracteres — aparece debajo del título en Google -->
