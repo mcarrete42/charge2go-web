@@ -992,6 +992,7 @@ function switchTab(t, btn) {
   document.getElementById('form-subject').value = { partner: 'Nuevo partner request', info: 'Nuevo request de info', soporte: 'Nuevo request de soporte' }[t];
   document.getElementById('form-note').textContent = formNotes[t];
   document.getElementById('form-btn').textContent = submitLabels[t];
+  document.querySelector('.form-trust').style.display = t === 'partner' ? 'flex' : 'none';
 }
 
 // AJAX form submission
