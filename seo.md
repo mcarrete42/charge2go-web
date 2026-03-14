@@ -24,6 +24,10 @@ charge2go — Instala una máquina de carga de móviles gratis en tu local
 <!-- Descripción al compartir en redes sociales -->
 El 46% de tus clientes se quedaría más tiempo si pudiera cargar el móvil. Dales ese servicio sin coste para ti. Sin inversión, sin gestión. charge2go.
 
+## OG Image
+<!-- Imagen al compartir (1200x630 px, archivo: assets/images/og-image.jpg) -->
+assets/images/og-image.jpg
+
 ---
 
 ## Hero H1
