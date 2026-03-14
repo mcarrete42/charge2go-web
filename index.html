@@ -860,7 +860,7 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
     <h2 class="fade-up d1">Pide tu máquina gratis.</h2>
     <p class="contact-sub fade-up d2">Te respondemos en menos de 24h para coordinar la instalación.</p>
     <div class="tabs fade-up">
-      <button class="tab active" onclick="switchTab('partner',this)">Quiero ser partner</button>
+      <button class="tab active" onclick="switchTab('partner',this)">Quiero una máquina</button>
       <button class="tab" onclick="switchTab('info',this)">Información general</button>
       <button class="tab" onclick="switchTab('soporte',this)">Soporte usuario</button>
     </div>
@@ -979,6 +979,11 @@ const formNotes = {
   info: 'Te respondemos en menos de 24h con toda la información que necesitas.',
   soporte: 'Nuestro equipo gestionará tu incidencia lo antes posible.'
 };
+const submitLabels = {
+  partner: 'Quiero mi máquina gratis →',
+  info: 'Contactar',
+  soporte: 'Enviar'
+};
 function switchTab(t, btn) {
   document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
   document.querySelectorAll('.field-group').forEach(x => x.classList.remove('active'));
@@ -986,6 +991,7 @@ function switchTab(t, btn) {
   document.getElementById('fields-' + t).classList.add('active');
   document.getElementById('form-subject').value = { partner: 'Nuevo partner request', info: 'Nuevo request de info', soporte: 'Nuevo request de soporte' }[t];
   document.getElementById('form-note').textContent = formNotes[t];
+  document.getElementById('form-btn').textContent = submitLabels[t];
 }
 
 // AJAX form submission
