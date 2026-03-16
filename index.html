@@ -630,6 +630,33 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
 .footer-legal a:hover { color: rgba(222,234,248,0.7); }
 
 
+/* ─── MOBILE NAV ─────────────────────────────────────────────── */
+.nav-hamburger {
+  display: none; background: none; border: none; cursor: pointer;
+  padding: 4px; color: #DEEAF8; flex-shrink: 0;
+}
+.mobile-nav {
+  display: none; position: fixed; inset: 0; z-index: 998;
+  background: rgba(8,13,23,0.97);
+  flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav-close {
+  position: absolute; top: 18px; right: 22px;
+  background: none; border: none; cursor: pointer;
+  color: rgba(222,234,248,0.5); padding: 6px; line-height: 1;
+}
+.mobile-nav-close:hover { color: #DEEAF8; }
+.mobile-nav a {
+  color: #DEEAF8; text-decoration: none; font-size: 22px; font-weight: 700;
+  transition: color .2s;
+}
+.mobile-nav a:hover { color: #C8E830; }
+.mobile-nav .mobile-cta {
+  background: #C8E830; color: #080D17 !important; font-weight: 700;
+  padding: 14px 36px; border-radius: 10px; font-size: 15px; margin-top: 4px;
+}
+
 /* ─── ANIMATIONS ─────────────────────────────────────────────── */
 .fade-up { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
 .fade-up.visible { opacity: 1; transform: translateY(0); }
@@ -648,6 +675,8 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
 @media (max-width: 768px) {
   nav { padding: 14px 24px; }
   .nav-links { display: none; }
+  .nav-cta { display: none; }
+  .nav-hamburger { display: flex; }
   .stats, .how, .partners, .where, .contact, footer { padding: 72px 24px; }
   .product { padding: 72px 24px; }
   .map-inner { padding: 0 24px 48px; }
@@ -679,7 +708,21 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
     <li><a href="#contacto">Contacto</a></li>
   </ul>
   <a href="#contacto" class="nav-cta">Quiero una máquina gratis</a>
+  <button class="nav-hamburger" id="nav-open" aria-label="Abrir menú">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+  </button>
 </nav>
+
+<div class="mobile-nav" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Navegación">
+  <button class="mobile-nav-close" id="nav-close" aria-label="Cerrar menú">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+  </button>
+  <a href="#como-funciona" onclick="closeMobileNav()">Cómo funciona</a>
+  <a href="#partners" onclick="closeMobileNav()">Para colaboradores</a>
+  <a href="#faq" onclick="closeMobileNav()">Preguntas frecuentes</a>
+  <a href="#contacto" onclick="closeMobileNav()">Contacto</a>
+  <a href="#contacto" class="mobile-cta" onclick="closeMobileNav()">Quiero una máquina gratis</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -1044,6 +1087,17 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
 </footer>
 
 <script>
+// Mobile nav
+function closeMobileNav() {
+  document.getElementById('mobile-nav').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('nav-open').addEventListener('click', () => {
+  document.getElementById('mobile-nav').classList.add('open');
+  document.body.style.overflow = 'hidden';
+});
+document.getElementById('nav-close').addEventListener('click', closeMobileNav);
+
 // Scroll progress bar
 const progressBar = document.getElementById('progress');
 window.addEventListener('scroll', () => {
