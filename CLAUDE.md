@@ -48,7 +48,7 @@ Root assets: `favicon.png` (32×32), `apple-touch-icon.png` (180×180)
 
 - Model: power bank rental by time — from 3€/hour. No deposit, no app required.
 - For venue partners: free machine installation, passive revenue share (up to 20%), zero management.
-- Early stage — **Madrid only**. Do NOT add fictitious stats or cities.
+- Early stage — **active in Madrid and Barcelona** (Barcelona live since 2026-06, e.g. Sala Apolo). Valencia/Sevilla still "próximamente". Do NOT add fictitious stats or cities beyond the real active ones.
 - Key CTA: **"Pide una máquina gratis"** / **"Quiero mi máquina gratis →"**
 
 ## SEO state (current)
@@ -89,7 +89,8 @@ Root assets: `favicon.png` (32×32), `apple-touch-icon.png` (180×180)
 
 Mapa estático CSS (sin Leaflet). Pines posicionados por porcentaje sobre imagen de España:
 - Madrid: `left:41%; top:43%` — **Activo ahora**
-- Barcelona, Valencia, Sevilla — **Próximamente**
+- Barcelona: `left:84%; top:31%` — **Activo ahora**
+- Valencia, Sevilla — **Próximamente**
 
 ## SEO workflow
 
