@@ -529,6 +529,22 @@ details.sector[open] { border-color: rgba(200,232,48,0.2); background: rgba(200,
 .smap-status { display: block; font-size: 9px; font-weight: 600; color: rgba(222,234,248,0.2); letter-spacing: .08em; text-transform: uppercase; margin-top: 3px; }
 .smap-pin.active .smap-status { font-size: 10px; color: #C8E830; }
 
+/* ─── PROOF / LOCALES REALES ─────────────────────────────────── */
+.proof { padding: 100px 80px; background: #0C1120; }
+.proof-inner { max-width: 1100px; margin: 0 auto; }
+.proof .eyebrow { color: #C8E830; }
+.proof h2 { font-size: clamp(28px,4vw,44px); font-weight: 800; letter-spacing: -1px; color: #F0F5FF; margin-bottom: 10px; }
+.proof-sub { font-size: 16px; color: rgba(222,234,248,0.65); max-width: 600px; line-height: 1.7; margin-bottom: 48px; }
+.proof-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.proof-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; overflow: hidden; transition: transform .3s ease, border-color .3s ease; }
+.proof-card:hover { transform: translateY(-4px); border-color: rgba(200,232,48,0.2); }
+.proof-card img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; display: block; }
+.proof-meta { padding: 18px 20px; }
+.proof-venue { font-size: 16px; font-weight: 700; color: #F0F5FF; }
+.proof-city { font-size: 13px; color: #C8E830; font-weight: 600; margin-top: 2px; }
+.proof-type { font-size: 13px; color: rgba(222,234,248,0.55); margin-top: 6px; line-height: 1.5; }
+@media (max-width: 768px) { .proof { padding: 72px 24px; } .proof-grid { grid-template-columns: 1fr; } }
+
 /* ─── CTA BANNER ──────────────────────────────────────────────── */
 .cta-banner {
   background: #C8E830;
@@ -927,15 +943,40 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
   </div>
 </section>
 
+<!-- PROOF / LOCALES REALES -->
+<section class="proof">
+  <div class="proof-inner">
+    <span class="eyebrow fade-up">Locales reales</span>
+    <h2 class="fade-up d1">Ya instaladas y funcionando.</h2>
+    <p class="proof-sub fade-up d2">De una sala de referencia en Barcelona a un hotel de lujo en Segovia, pasando por un pub histórico de Madrid: charge2go encaja en cualquier local con afluencia.</p>
+    <div class="proof-grid">
+      <div class="proof-card fade-up">
+        <img src="assets/images/local-apolo.jpg" alt="Estación charge2go instalada en el kiosko de la Sala Apolo, Barcelona" width="750" height="1000" loading="lazy">
+        <div class="proof-meta"><div class="proof-venue">Sala Apolo</div><div class="proof-city">Barcelona</div><div class="proof-type">Sala / discoteca de referencia</div></div>
+      </div>
+      <div class="proof-card fade-up d1">
+        <img src="assets/images/local-fontana.jpg" alt="Estación charge2go instalada en el pub La Fontana de Oro, Madrid" width="750" height="1000" loading="lazy">
+        <div class="proof-meta"><div class="proof-venue">La Fontana de Oro</div><div class="proof-city">Madrid</div><div class="proof-type">Pub histórico de ambiente turístico</div></div>
+      </div>
+      <div class="proof-card fade-up d2">
+        <img src="assets/images/local-candido.jpg" alt="Estación charge2go instalada en el Hotel Cándido, Segovia" width="750" height="1000" loading="lazy">
+        <div class="proof-meta"><div class="proof-venue">Hotel Cándido</div><div class="proof-city">Segovia</div><div class="proof-type">Hotel 4★</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- MAP -->
 <section class="map-section">
   <div class="map-inner">
     <div class="map-heading fade-up">
-      <span class="eyebrow">Red de máquinas</span>
-      <h2>Estamos donde la gente se mueve.</h2>
-      <p>Expandiéndonos ciudad a ciudad.</p>
+      <span class="eyebrow">Red en expansión</span>
+      <h2>Expandiendo la red de estaciones por toda España.</h2>
+      <p>Ya operamos en Madrid, Barcelona y Segovia, y sumamos nuevos locales cada mes.</p>
+      <a href="#contacto" class="btn-ghost" style="margin-top:24px; display:inline-block;">¿Tu ciudad aún no está? Escríbenos →</a>
     </div>
     <div class="map-stats-aside fade-up d1">
+      <div class="map-stat-item"><div class="map-num">3</div><div class="map-label">Ciudades activas</div></div>
       <div class="map-stat-item"><div class="map-num">6–12</div><div class="map-label">Power banks por máquina</div></div>
       <div class="map-stat-item"><div class="map-num">&lt;30'</div><div class="map-label">Instalación en tu local</div></div>
     </div>
@@ -945,17 +986,13 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
       <div class="smap-dot-wrap"><div class="smap-ring"></div><div class="smap-dot"></div></div>
       <div class="smap-info"><span class="smap-city">Madrid</span><span class="smap-status">Activo ahora</span></div>
     </div>
+    <div class="smap-pin active" style="left:33%;top:33%">
+      <div class="smap-dot-wrap"><div class="smap-ring"></div><div class="smap-dot"></div></div>
+      <div class="smap-info"><span class="smap-city">Segovia</span><span class="smap-status">Activo ahora</span></div>
+    </div>
     <div class="smap-pin active" style="left:84%;top:31%">
       <div class="smap-dot-wrap"><div class="smap-ring"></div><div class="smap-dot"></div></div>
       <div class="smap-info"><span class="smap-city">Barcelona</span><span class="smap-status">Activo ahora</span></div>
-    </div>
-    <div class="smap-pin soon" style="left:66%;top:58%">
-      <div class="smap-dot-wrap"><div class="smap-dot"></div></div>
-      <div class="smap-info"><span class="smap-city">Valencia</span><span class="smap-status">Próximamente</span></div>
-    </div>
-    <div class="smap-pin soon" style="left:23%;top:80%">
-      <div class="smap-dot-wrap"><div class="smap-dot"></div></div>
-      <div class="smap-info"><span class="smap-city">Sevilla</span><span class="smap-status">Próximamente</span></div>
     </div>
   </div>
 </section>
