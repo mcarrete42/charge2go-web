@@ -1,6 +1,6 @@
 # charge2go
 
-> charge2go instala gratis máquinas de alquiler de baterías externas (powerbanks) en bares, restaurantes, hoteles, gimnasios y eventos en España. El local no invierte ni gestiona nada: charge2go aporta la máquina, el mantenimiento y el soporte, y el negocio genera ingresos pasivos. Los clientes finales alquilan una powerbank pagando por tiempo de uso (desde 3 €/hora) con pago contactless, sin app ni registro.
+> charge2go instala gratis máquinas de alquiler de baterías externas (powerbanks) en bares, restaurantes, hoteles, gimnasios y eventos en España. El local no invierte ni gestiona nada: charge2go aporta la máquina, el mantenimiento y el soporte, y el negocio genera ingresos pasivos. Los clientes finales alquilan una powerbank pagando por tiempo de uso (desde 3 €/hora) con pago contactless, sin app ni registro. Cuenta con más de 50 estaciones activas en España (Madrid, Barcelona y Segovia) y está en expansión por todo el país.
 
 ## Cómo funciona
 - Para el local (partner): instalación gratuita, cero costes fijos, sin permanencia, mantenimiento y soporte gestionados por charge2go, ingresos pasivos desde el primer día.
@@ -13,7 +13,13 @@
 - 24 horas: 35 €
 
 ## Cobertura
-- País: España. Despliegue inicial centrado en Madrid.
+- Más de 50 estaciones activas en España, en expansión por todo el país.
+- Ciudades operativas: Madrid, Barcelona y Segovia.
+
+## Locales destacados (ejemplos reales)
+- Sala Apolo — Barcelona (sala/discoteca de referencia).
+- La Fontana de Oro — Madrid (pub histórico de ambiente turístico).
+- Hotel Cándido — Segovia (hotel de 4 estrellas).
 
 ## Enlaces
 - [Web principal](https://charge2go.io/): qué es, cómo funciona, sectores y formulario de contacto.
