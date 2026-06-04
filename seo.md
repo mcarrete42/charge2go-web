@@ -89,25 +89,28 @@ Subtítulo: Pide ya tu máquina de charge2go gratis y ofrece un servicio de alta
 ## FAQ — Preguntas y respuestas
 <!-- Aparecen en la web y en Google como rich snippets -->
 
-P1: ¿Cuánto me cuesta instalar la máquina en mi local?
+P1: ¿Para qué tipos de local sirve el alquiler de powerbanks de charge2go?
+R: El alquiler de powerbanks de charge2go funciona en prácticamente cualquier local con afluencia de personas: alquiler de powerbanks para bares y discotecas, restaurantes y cafeterías, hoteles, gimnasios, hospitales y clínicas, centros comerciales, estaciones y aeropuertos, y eventos o festivales. Instalamos la máquina de alquiler de powerbanks gratis, sin permanencia, y tu negocio genera ingresos pasivos desde el primer día.
+
+P2: ¿Cuánto me cuesta instalar la máquina en mi local?
 R: Nada. La instalación, la máquina y el mantenimiento son completamente gratuitos para el local. charge2go corre con todos los costes. Solo necesitas ofrecer espacio y un enchufe estándar.
 
-P2: ¿Cuánto espacio ocupa la máquina?
+P3: ¿Cuánto espacio ocupa la máquina?
 R: La estación tiene un footprint reducido, similar a una papelera de oficina. Cabe en cualquier barra, mostrador o rincón con tráfico de clientes.
 
-P3: ¿Qué tiene que hacer mi personal?
+P4: ¿Qué tiene que hacer mi personal?
 R: Nada. Literalmente. La máquina funciona de forma autónoma. El usuario elige, paga en contactless y recoge la power bank. Si hay alguna incidencia, la gestiona el equipo de charge2go directamente con el usuario.
 
-P4: ¿Cuánto dinero puede generar mi local?
+P5: ¿Cuánto dinero puede generar mi local?
 R: Depende del tráfico de tu negocio. Con un volumen medio de clientes, la máquina genera ingresos pasivos mensuales desde el primer día. Te lo detallamos sin compromiso cuando nos contactes.
 
-P5: ¿Qué pasa si la máquina tiene una avería?
+P6: ¿Qué pasa si la máquina tiene una avería?
 R: El sistema está monitorizado en remoto 24/7. charge2go detecta las incidencias antes que tú y gestiona la resolución. Tu negocio no se ve afectado.
 
-P6: ¿Tengo que instalar alguna app o sistema especial?
+P7: ¿Tengo que instalar alguna app o sistema especial?
 R: No. La máquina solo necesita un enchufe estándar de 220V. No requiere instalación de red, software ni ningún tipo de integración con tus sistemas.
 
-P7: ¿Puedo retirar la máquina si dejo de quererla?
+P8: ¿Puedo retirar la máquina si dejo de quererla?
 R: Sí. Sin permanencia ni penalización. Acordamos las condiciones de salida de forma transparente desde el inicio.
 
 ---

@@ -1,10 +1,21 @@
 # charge2go
 
-> charge2go instala gratis máquinas de alquiler de baterías externas (powerbanks) en bares, restaurantes, hoteles, gimnasios y eventos en España. El local no invierte ni gestiona nada: charge2go aporta la máquina, el mantenimiento y el soporte, y el negocio genera ingresos pasivos. Los clientes finales alquilan una powerbank pagando por tiempo de uso (desde 3 €/hora) con pago contactless, sin app ni registro. Cuenta con más de 50 estaciones activas en España (Madrid, Barcelona y Segovia) y está en expansión por todo el país.
+> charge2go instala gratis máquinas de alquiler de baterías externas (powerbanks) en bares, discotecas, restaurantes, cafeterías, hoteles, gimnasios, hospitales y clínicas, centros comerciales, estaciones, aeropuertos y eventos o festivales en España. El local no invierte ni gestiona nada: charge2go aporta la máquina, el mantenimiento y el soporte, y el negocio genera ingresos pasivos. Los clientes finales alquilan una powerbank pagando por tiempo de uso (desde 3 €/hora) con pago contactless, sin app ni registro. Cuenta con más de 50 estaciones activas en España (Madrid, Barcelona y Segovia) y está en expansión por todo el país.
 
 ## Cómo funciona
 - Para el local (partner): instalación gratuita, cero costes fijos, sin permanencia, mantenimiento y soporte gestionados por charge2go, ingresos pasivos desde el primer día.
 - Para el usuario final: recoge una powerbank en la estación, carga el móvil y la devuelve en cualquier estación de la red. Cables incluidos (USB-C, Lightning, micro-USB).
+
+## Sectores para alquiler de powerbanks
+charge2go ofrece alquiler de powerbanks (baterías externas) en cualquier local con afluencia de personas. Sectores habituales:
+- Alquiler de powerbanks para bares y discotecas: el público joven y nocturno no se va cuando se queda sin batería.
+- Alquiler de powerbanks para restaurantes y cafeterías: la sobremesa se alarga y sube el ticket medio.
+- Alquiler de powerbanks para hoteles: carga para huéspedes durante la espera en recepción y la estancia.
+- Alquiler de powerbanks para gimnasios: tus socios siguen con música, apps de rutina y vídeos sin cortar el entreno.
+- Alquiler de powerbanks para hospitales y clínicas: tranquilidad para familias que esperan horas con el móvil agotado.
+- Alquiler de powerbanks para centros comerciales: los clientes siguen comprando con el móvil cargado.
+- Alquiler de powerbanks para estaciones y aeropuertos: esperas largas y la tarjeta de embarque en el móvil.
+- Alquiler de powerbanks para eventos y festivales: entradas, pagos y vídeos dependen de la batería.
 
 ## Precios (alquiler por tiempo)
 - 1 hora: 3 €
