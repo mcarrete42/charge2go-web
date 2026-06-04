@@ -10,7 +10,7 @@ charge2go | Máquina de power banks gratis para tu local
 
 ## Description
 <!-- Máximo 155 caracteres — aparece debajo del título en Google -->
-Instala gratis una estación de alquiler de power banks en tu bar, restaurante o gimnasio. Tus clientes se quedan más tiempo, tú generas ingresos sin inversión ni gestión. charge2go.
+Red de estaciones de alquiler de powerbanks para bares, discotecas, restaurantes, hoteles, gimnasios, hospitales y eventos. Sin app ni costes para el local.
 
 ## Keywords
 <!-- Separadas por comas -->
