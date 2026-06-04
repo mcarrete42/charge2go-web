@@ -34,6 +34,8 @@ charge2go ofrece alquiler de powerbanks (baterías externas) en cualquier local 
 
 ## Enlaces
 - [Web principal](https://charge2go.io/): qué es, cómo funciona, sectores y formulario de contacto.
+- [Blog](https://charge2go.io/blog/): guías sobre el alquiler de powerbanks en España.
+- [¿Cuánto cuesta alquilar una powerbank en España?](https://charge2go.io/blog/cuanto-cuesta-alquilar-una-powerbank/): precios por tiempo (desde 3 €/hora), cómo se paga, dónde alquilar y cómo funciona.
 - [Preguntas frecuentes](https://charge2go.io/#faq): dudas habituales de partners y usuarios.
 - [Contacto](https://charge2go.io/#contacto): pide una máquina gratis para tu local.
 - [LinkedIn](https://www.linkedin.com/company/charge2gopowerbanks/)

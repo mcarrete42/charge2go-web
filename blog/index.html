@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DJE9Q4VX7F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DJE9Q4VX7F');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Blog | charge2go — Alquiler de powerbanks</title>
+<meta name="description" content="Guías y respuestas sobre el alquiler de powerbanks (baterías externas) en España: precios, cómo funciona, dónde alquilar y cómo instalar una estación en tu local.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://charge2go.io/blog/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="charge2go">
+<meta property="og:url" content="https://charge2go.io/blog/">
+<meta property="og:title" content="Blog charge2go — Alquiler de powerbanks">
+<meta property="og:description" content="Guías sobre el alquiler de powerbanks en España: precios, cómo funciona y cómo instalar una estación en tu local.">
+<meta property="og:image" content="https://charge2go.io/assets/images/og-image.jpg">
+<meta property="og:locale" content="es_ES">
+
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#080D17">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: #080D17; color: #E8EDF2; overflow-x: hidden; line-height: 1.6; }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 18px 60px; background: rgba(8,13,23,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+.logo-img { height: 30px; width: auto; display: block; }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { color: #DEEAF8; text-decoration: none; font-size: 14px; font-weight: 500; position: relative; padding-bottom: 2px; }
+.nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 1px; background: #C8E830; transform: scaleX(0); transition: transform .2s; }
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-cta { background: #C8E830; color: #080D17; font-size: 13px; font-weight: 700; padding: 9px 20px; border-radius: 8px; text-decoration: none; transition: transform .15s, box-shadow .15s; }
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(200,232,48,0.35); }
+
+.blog-head { max-width: 900px; margin: 0 auto; padding: 150px 24px 20px; }
+.eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #C8E830; margin-bottom: 14px; display: block; }
+.blog-head h1 { font-size: clamp(30px, 5vw, 46px); font-weight: 900; letter-spacing: -.02em; margin-bottom: 14px; }
+.blog-head p { font-size: 18px; color: rgba(232,237,242,0.8); max-width: 640px; }
+
+.post-list { max-width: 900px; margin: 0 auto; padding: 40px 24px 100px; display: grid; gap: 22px; }
+.post-card { display: block; text-decoration: none; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 30px; transition: border-color .2s, transform .2s, background .2s; }
+.post-card:hover { border-color: rgba(200,232,48,0.4); transform: translateY(-2px); background: rgba(255,255,255,0.05); }
+.post-card .tag { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #C8E830; }
+.post-card h2 { font-size: 23px; font-weight: 800; color: #E8EDF2; margin: 10px 0 10px; line-height: 1.25; }
+.post-card p { font-size: 16px; color: rgba(232,237,242,0.7); }
+.post-card .read { display: inline-block; margin-top: 16px; font-size: 14px; font-weight: 700; color: #C8E830; }
+
+footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padding: 60px 60px 40px; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px; }
+.footer-logo { height: 26px; width: auto; display: block; margin-bottom: 10px; }
+.footer-tagline { font-size: 13px; color: rgba(222,234,248,0.4); }
+.footer-contact { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.footer-contact a { color: rgba(222,234,248,0.5); text-decoration: none; font-size: 13px; transition: color .2s; }
+.footer-contact a:hover { color: #DEEAF8; }
+.footer-bottom { max-width: 1100px; margin: 40px auto 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-bottom p { font-size: 12px; color: rgba(222,234,248,0.3); }
+.footer-legal { display: flex; gap: 20px; }
+.footer-legal a { font-size: 12px; color: rgba(222,234,248,0.3); text-decoration: none; transition: color .2s; }
+.footer-legal a:hover { color: rgba(222,234,248,0.7); }
+
+@media (max-width: 768px) {
+  nav { padding: 14px 20px; }
+  .nav-links { display: none; }
+  footer { padding: 56px 20px 32px; }
+  .footer-inner { flex-direction: column; }
+  .footer-contact { align-items: flex-start; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/"><img src="/assets/images/logo.png" alt="charge2go — alquiler de powerbanks" class="logo-img" width="645" height="138"></a>
+  <ul class="nav-links">
+    <li><a href="/#como-funciona">Cómo funciona</a></li>
+    <li><a href="/#partners">Para colaboradores</a></li>
+    <li><a href="/blog/">Blog</a></li>
+    <li><a href="/#contacto">Contacto</a></li>
+  </ul>
+  <a href="/#contacto" class="nav-cta">Quiero una máquina gratis</a>
+</nav>
+
+<header class="blog-head">
+  <span class="eyebrow">Blog</span>
+  <h1>Guías sobre el alquiler de powerbanks</h1>
+  <p>Todo lo que necesitas saber sobre el alquiler de baterías externas en España: precios, cómo funciona, dónde alquilar y cómo instalar una estación en tu local.</p>
+</header>
+
+<main class="post-list">
+  <a class="post-card" href="/blog/cuanto-cuesta-alquilar-una-powerbank/">
+    <span class="tag">Guía · Alquiler de powerbanks</span>
+    <h2>¿Cuánto cuesta alquilar una powerbank en España?</h2>
+    <p>Precios por tiempo desde 3 €/hora, pago contactless sin app ni registro, dónde alquilar y cómo funciona paso a paso.</p>
+    <span class="read">Leer artículo →</span>
+  </a>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <img src="/assets/images/logo.png" alt="charge2go" class="footer-logo" width="645" height="138" loading="lazy">
+      <div class="footer-tagline">Batería, justo cuando la necesitas.</div>
+    </div>
+    <address class="footer-contact">
+      <a href="mailto:hola@charge2go.io">hola@charge2go.io</a>
+    </address>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 charge2go. Todos los derechos reservados.</p>
+    <div class="footer-legal">
+      <a href="/privacidad.html">Política de privacidad</a>
+      <a href="/aviso-legal.html">Aviso legal</a>
+      <a href="/cookies.html">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
