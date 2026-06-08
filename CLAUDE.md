@@ -46,7 +46,7 @@ Root assets: `favicon.png` (32×32), `apple-touch-icon.png` (180×180)
 
 ## Business context
 
-- Model: power bank rental by time — from 3€/hour. No deposit, no app required.
+- Model: power bank rental by time of use — **from 2,50€/30min OR 3€/hour, depending on the venue** (each station applies one of the two tariffs). A **refundable deposit** is held on pickup; on return the real usage time is calculated and the difference is refunded. No app required, contactless. **No "15€/day max" anymore** — do not reintroduce it.
 - For venue partners: free machine installation, passive revenue share (up to 20%), zero management.
 - Early stage — **active in Madrid and Barcelona** (Barcelona live since 2026-06, e.g. Sala Apolo). Valencia/Sevilla still "próximamente". Do NOT add fictitious stats or cities beyond the real active ones.
 - Key CTA: **"Pide una máquina gratis"** / **"Quiero mi máquina gratis →"**
@@ -56,9 +56,10 @@ Root assets: `favicon.png` (32×32), `apple-touch-icon.png` (180×180)
 - **Title**: `charge2go | Alquiler de powerbanks (baterías externas)` (54 chars)
 - **Meta description**: 142 chars — trim to <120 if editing
 - **H1**: `Alquiler de baterías externas para tus clientes`
-- **Schema**: Organization+LocalBusiness, WebSite, Product (with image), FAQPage (11 questions)
+- **Schema**: Organization+LocalBusiness, WebSite, Product (image + AggregateOffer lowPrice 2.50 / highPrice 3.00), FAQPage (11 questions)
 - **FAQs**: 11 preguntas — 7 B2B partner + 4 orientadas a búsquedas de usuario final
-- **Sitemap**: solo homepage (`https://charge2go.io/`)
+- **Sitemap**: homepage + `/blog/` + 2 posts (`cuanto-cuesta-alquilar-una-powerbank`, `donde-alquilar-power-bank-bateria-externa`)
+- **Blog**: 2 artículos publicados (índice en `/blog/`), nav con menú hamburguesa en móvil
 - **robots.txt**: Allow all, sitemap referenced
 - **GA4**: `G-DJE9Q4VX7F` — evento `generate_lead` disparado en submit exitoso del formulario
 - **seo.md**: archivo editable por el usuario con todo el contenido SEO. Cuando el usuario diga "actualiza desde seo.md", leer ese archivo y aplicar los cambios a index.html

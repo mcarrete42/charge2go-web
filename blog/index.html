@@ -44,6 +44,14 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; 
 .nav-links a:hover::after { transform: scaleX(1); }
 .nav-cta { background: #C8E830; color: #080D17; font-size: 13px; font-weight: 700; padding: 9px 20px; border-radius: 8px; text-decoration: none; transition: transform .15s, box-shadow .15s; }
 .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(200,232,48,0.35); }
+.nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; color: #DEEAF8; flex-shrink: 0; }
+.mobile-nav { display: none; position: fixed; inset: 0; z-index: 998; background: rgba(8,13,23,0.97); flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
+.mobile-nav.open { display: flex; }
+.mobile-nav-close { position: absolute; top: 18px; right: 22px; background: none; border: none; cursor: pointer; color: rgba(222,234,248,0.5); padding: 6px; line-height: 1; }
+.mobile-nav-close:hover { color: #DEEAF8; }
+.mobile-nav a { color: #DEEAF8; text-decoration: none; font-size: 22px; font-weight: 700; transition: color .2s; }
+.mobile-nav a:hover { color: #C8E830; }
+.mobile-nav .mobile-cta { background: #C8E830; color: #080D17 !important; font-weight: 700; padding: 14px 36px; border-radius: 10px; font-size: 15px; margin-top: 4px; }
 
 .blog-head { max-width: 900px; margin: 0 auto; padding: 150px 24px 20px; }
 .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #C8E830; margin-bottom: 14px; display: block; }
@@ -74,6 +82,8 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
 @media (max-width: 768px) {
   nav { padding: 14px 20px; }
   .nav-links { display: none; }
+  .nav-cta { display: none; }
+  .nav-hamburger { display: flex; }
   footer { padding: 56px 20px 32px; }
   .footer-inner { flex-direction: column; }
   .footer-contact { align-items: flex-start; }
@@ -92,7 +102,21 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
     <li><a href="/#contacto">Contacto</a></li>
   </ul>
   <a href="/#contacto" class="nav-cta">Quiero una máquina gratis</a>
+  <button class="nav-hamburger" id="nav-open" aria-label="Abrir menú">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+  </button>
 </nav>
+
+<div class="mobile-nav" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Navegación">
+  <button class="mobile-nav-close" id="nav-close" aria-label="Cerrar menú">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+  </button>
+  <a href="/#como-funciona">Cómo funciona</a>
+  <a href="/#partners">Para colaboradores</a>
+  <a href="/blog/">Blog</a>
+  <a href="/#contacto">Contacto</a>
+  <a href="/#contacto" class="mobile-cta">Quiero una máquina gratis</a>
+</div>
 
 <header class="blog-head">
   <span class="eyebrow">Blog</span>
@@ -101,10 +125,16 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
 </header>
 
 <main class="post-list">
+  <a class="post-card" href="/blog/donde-alquilar-power-bank-bateria-externa/">
+    <span class="tag">Guía · Alquiler de powerbanks</span>
+    <h2>¿Sin batería? Cómo alquilar una powerbank cerca de ti</h2>
+    <p>Qué es una powerbank de alquiler, cómo conseguir una en menos de un minuto sin app y dónde encontrar una estación charge2go cerca de ti.</p>
+    <span class="read">Leer artículo →</span>
+  </a>
   <a class="post-card" href="/blog/cuanto-cuesta-alquilar-una-powerbank/">
     <span class="tag">Guía · Alquiler de powerbanks</span>
     <h2>¿Cuánto cuesta alquilar una powerbank en España?</h2>
-    <p>Precios por tiempo desde 3 €/hora, pago contactless sin app ni registro, dónde alquilar y cómo funciona paso a paso.</p>
+    <p>Precios por tiempo de uso desde 2,50 € / 30 min o 3 € / hora según el local, cómo funciona el depósito reembolsable y dónde alquilar.</p>
     <span class="read">Leer artículo →</span>
   </a>
 </main>
@@ -128,6 +158,13 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
     </div>
   </div>
 </footer>
+
+<script>
+  const mnav = document.getElementById('mobile-nav');
+  document.getElementById('nav-open').addEventListener('click', () => { mnav.classList.add('open'); document.body.style.overflow = 'hidden'; });
+  document.getElementById('nav-close').addEventListener('click', () => { mnav.classList.remove('open'); document.body.style.overflow = ''; });
+  mnav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mnav.classList.remove('open'); document.body.style.overflow = ''; }));
+</script>
 
 </body>
 </html>

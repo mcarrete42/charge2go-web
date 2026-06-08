@@ -81,84 +81,15 @@
       "image": "https://charge2go.io/assets/images/bateria.webp",
       "description": "Batería externa (powerbank) portátil con cables incluidos (USB-C, Lightning, micro-USB) disponible en estaciones físicas en bares, discotecas, restaurantes, hoteles, gimnasios, hospitales, centros comerciales, estaciones, aeropuertos y eventos. Sin registro, pago contactless.",
       "brand": { "@type": "Brand", "name": "charge2go" },
-      "offers": [
-        {
-          "@type": "Offer",
-          "name": "1 hora",
-          "price": "3.00",
-          "priceCurrency": "EUR",
-          "priceValidUntil": "2026-12-31",
-          "availability": "https://schema.org/InStock",
-          "hasMerchantReturnPolicy": {
-            "@type": "MerchantReturnPolicy",
-            "applicableCountry": "ES",
-            "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
-          },
-          "shippingDetails": {
-            "@type": "OfferShippingDetails",
-            "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "EUR" },
-            "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "ES" },
-            "deliveryTime": { "@type": "ShippingDeliveryTime", "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "MIN" } }
-          }
-        },
-        {
-          "@type": "Offer",
-          "name": "3 horas",
-          "price": "5.00",
-          "priceCurrency": "EUR",
-          "priceValidUntil": "2026-12-31",
-          "availability": "https://schema.org/InStock",
-          "hasMerchantReturnPolicy": {
-            "@type": "MerchantReturnPolicy",
-            "applicableCountry": "ES",
-            "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
-          },
-          "shippingDetails": {
-            "@type": "OfferShippingDetails",
-            "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "EUR" },
-            "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "ES" },
-            "deliveryTime": { "@type": "ShippingDeliveryTime", "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "MIN" } }
-          }
-        },
-        {
-          "@type": "Offer",
-          "name": "10 horas",
-          "price": "10.00",
-          "priceCurrency": "EUR",
-          "priceValidUntil": "2026-12-31",
-          "availability": "https://schema.org/InStock",
-          "hasMerchantReturnPolicy": {
-            "@type": "MerchantReturnPolicy",
-            "applicableCountry": "ES",
-            "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
-          },
-          "shippingDetails": {
-            "@type": "OfferShippingDetails",
-            "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "EUR" },
-            "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "ES" },
-            "deliveryTime": { "@type": "ShippingDeliveryTime", "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "MIN" } }
-          }
-        },
-        {
-          "@type": "Offer",
-          "name": "24 horas",
-          "price": "35.00",
-          "priceCurrency": "EUR",
-          "priceValidUntil": "2026-12-31",
-          "availability": "https://schema.org/InStock",
-          "hasMerchantReturnPolicy": {
-            "@type": "MerchantReturnPolicy",
-            "applicableCountry": "ES",
-            "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
-          },
-          "shippingDetails": {
-            "@type": "OfferShippingDetails",
-            "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "EUR" },
-            "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "ES" },
-            "deliveryTime": { "@type": "ShippingDeliveryTime", "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "MIN" } }
-          }
-        }
-      ]
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "EUR",
+        "lowPrice": "2.50",
+        "highPrice": "3.00",
+        "offerCount": "2",
+        "availability": "https://schema.org/InStock",
+        "description": "Alquiler por tiempo de uso: desde 2,50 € por 30 minutos o desde 3 € por hora, según el local. Se retiene un depósito reembolsable al recoger y se reembolsa la diferencia al devolver, según el tiempo de uso."
+      }
     },
     {
       "@type": "FAQPage",
@@ -211,7 +142,7 @@
         {
           "@type": "Question",
           "name": "¿Cuánto cuesta alquilar una batería externa?",
-          "acceptedAnswer": { "@type": "Answer", "text": "El alquiler de una batería externa con charge2go parte desde 3€/hora. El cobro es por tiempo de uso y se realiza directamente en la estación mediante pago contactless, sin app ni registro previo." }
+          "acceptedAnswer": { "@type": "Answer", "text": "El alquiler de una batería externa con charge2go se cobra por tiempo de uso: desde 2,50 € por 30 minutos o desde 3 € por hora, según el local. Al recoger se retiene un depósito reembolsable y, al devolver la powerbank, se calcula el tiempo de uso real y se te reembolsa la diferencia. Pago contactless en la estación, sin app ni registro previo." }
         },
         {
           "@type": "Question",
@@ -928,7 +859,7 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
       <div class="partner-card fade-up d3">
         <div class="card-icon-wrap"><svg class="card-icon" viewBox="0 0 44 44" fill="none"><rect x="7" y="13" width="20" height="18" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M32 18a6 6 0 010 8M36 15a10 10 0 010 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
         <h3>Sin app ni registro</h3>
-        <p>Tus clientes solo acercan la tarjeta o el móvil y pagan contactless. Sin descargar nada, sin fianzas. Menos fricción que cualquier app y mejor experiencia para tu cliente.</p>
+        <p>Tus clientes solo acercan la tarjeta o el móvil y pagan contactless. Sin descargar nada, sin registros. Menos fricción que cualquier app y mejor experiencia para tu cliente.</p>
       </div>
     </div>
   </div>
@@ -1061,7 +992,7 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
       </details>
       <details class="faq-item">
         <summary>¿Cuánto cuesta alquilar una batería externa?</summary>
-        <p>El alquiler de una batería externa con charge2go parte desde 3€/hora. El cobro es por tiempo de uso y se realiza directamente en la estación mediante pago contactless, sin app ni registro previo.</p>
+        <p>El alquiler de una batería externa con charge2go se cobra por tiempo de uso: desde 2,50 € por 30 minutos o desde 3 € por hora, según el local. Al recoger se retiene un depósito reembolsable y, al devolver la powerbank, se calcula el tiempo de uso real y se te reembolsa la diferencia. Pago contactless en la estación, sin app ni registro previo.</p>
       </details>
       <details class="faq-item">
         <summary>¿Qué es una estación de alquiler de powerbanks?</summary>

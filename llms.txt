@@ -1,6 +1,6 @@
 # charge2go
 
-> charge2go instala gratis máquinas de alquiler de baterías externas (powerbanks) en bares, discotecas, restaurantes, cafeterías, hoteles, gimnasios, hospitales y clínicas, centros comerciales, estaciones, aeropuertos y eventos o festivales en España. El local no invierte ni gestiona nada: charge2go aporta la máquina, el mantenimiento y el soporte, y el negocio genera ingresos pasivos. Los clientes finales alquilan una powerbank pagando por tiempo de uso (desde 3 €/hora) con pago contactless, sin app ni registro. Cuenta con más de 50 estaciones activas en España (Madrid, Barcelona y Segovia) y está en expansión por todo el país.
+> charge2go instala gratis máquinas de alquiler de baterías externas (powerbanks) en bares, discotecas, restaurantes, cafeterías, hoteles, gimnasios, hospitales y clínicas, centros comerciales, estaciones, aeropuertos y eventos o festivales en España. El local no invierte ni gestiona nada: charge2go aporta la máquina, el mantenimiento y el soporte, y el negocio genera ingresos pasivos. Los clientes finales alquilan una powerbank pagando por tiempo de uso (desde 2,50 € por 30 minutos o 3 € por hora, según el local) con pago contactless, sin app ni registro; al recoger se retiene un depósito reembolsable y, al devolver, se calcula el tiempo de uso real y se reembolsa la diferencia. Cuenta con más de 50 estaciones activas en España (Madrid, Barcelona y Segovia) y está en expansión por todo el país.
 
 ## Cómo funciona
 - Para el local (partner): instalación gratuita, cero costes fijos, sin permanencia, mantenimiento y soporte gestionados por charge2go, ingresos pasivos desde el primer día.
@@ -17,11 +17,11 @@ charge2go ofrece alquiler de powerbanks (baterías externas) en cualquier local 
 - Alquiler de powerbanks para estaciones y aeropuertos: esperas largas y la tarjeta de embarque en el móvil.
 - Alquiler de powerbanks para eventos y festivales: entradas, pagos y vídeos dependen de la batería.
 
-## Precios (alquiler por tiempo)
-- 1 hora: 3 €
-- 3 horas: 5 €
-- 10 horas: 10 €
-- 24 horas: 35 €
+## Precios (alquiler por tiempo de uso)
+- La tarifa depende del local: desde 2,50 € por 30 minutos en unas estaciones y desde 3 € por hora en otras.
+- El coste se calcula por el tiempo que se tiene la powerbank.
+- Al recoger se retiene un depósito reembolsable; al devolverla, se calcula el tiempo de uso real y se reembolsa la diferencia.
+- Pago contactless en la estación, sin app ni registro.
 
 ## Cobertura
 - Más de 50 estaciones activas en España, en expansión por todo el país.
@@ -35,7 +35,8 @@ charge2go ofrece alquiler de powerbanks (baterías externas) en cualquier local 
 ## Enlaces
 - [Web principal](https://charge2go.io/): qué es, cómo funciona, sectores y formulario de contacto.
 - [Blog](https://charge2go.io/blog/): guías sobre el alquiler de powerbanks en España.
-- [¿Cuánto cuesta alquilar una powerbank en España?](https://charge2go.io/blog/cuanto-cuesta-alquilar-una-powerbank/): precios por tiempo (desde 3 €/hora), cómo se paga, dónde alquilar y cómo funciona.
+- [¿Cuánto cuesta alquilar una powerbank en España?](https://charge2go.io/blog/cuanto-cuesta-alquilar-una-powerbank/): precios por tiempo de uso (desde 2,50 € / 30 min o 3 € / hora según el local), cómo funciona el depósito reembolsable, cómo se paga y dónde alquilar.
+- [¿Sin batería? Cómo alquilar una powerbank cerca de ti](https://charge2go.io/blog/donde-alquilar-power-bank-bateria-externa/): qué es una powerbank de alquiler, cómo conseguir una paso a paso sin app y dónde encontrar una estación charge2go.
 - [Preguntas frecuentes](https://charge2go.io/#faq): dudas habituales de partners y usuarios.
 - [Contacto](https://charge2go.io/#contacto): pide una máquina gratis para tu local.
 - [LinkedIn](https://www.linkedin.com/company/charge2gopowerbanks/)
