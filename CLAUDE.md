@@ -39,10 +39,42 @@ Root assets: `favicon.png` (32×32), `apple-touch-icon.png` (180×180)
 
 ## Brand
 
-- **Colors**: dark navy `#1C2333` / `#0D1117` / `#0A0F1A` (header), lime green `#C8E830`, logo-blue `#DEEAF8`
-- **Light section bg**: `#DEEAF8`
-- **Font**: Inter (weights 400–900)
-- **Tone**: clear, simple, practical, modern. No technical jargon, no exaggerated claims.
+**Fuente canónica: `docs/MARCA_charge2go.md`** (guía oficial de marca, mantenida por el usuario). Resumen:
+
+- **Tipografía oficial**: wordmark en **Surgena Semibold** (fallback Comfortaa Bold); titulares y cuerpo en **Poppins**.
+- **Wordmark**: `charge2` en blanco + `go` en lima, todo en minúsculas.
+- **Paleta oficial**:
+
+  | Uso | HEX |
+  |-----|-----|
+  | Fondo oscuro principal | `#0A0F1A` |
+  | Panel / tarjeta | `#121A2B` |
+  | Panel alternativo | `#0E1524` |
+  | Lima (acento de marca) | `#C3E82B` |
+  | Blanco | `#FFFFFF` |
+  | Texto gris (cuerpo) | `#9AA6B8` |
+  | Texto tenue / captions | `#5E6B80` |
+  | Línea / hairline | `#26314A` |
+
+- **Tono / mensaje**:
+  - **Prioridad 1**: "Ofrece un servicio de alta demanda que mejora la experiencia de tu cliente".
+  - **Prioridad 2** (secundaria): los ingresos son un extra, no el argumento principal.
+  - Claims clave: sin inversión, sin gestión, sin app ni registro, instalación en <30 min, solo un enchufe.
+  - ⚠️ **NUNCA usar el claim "sin fianza / sin depósito"** — SÍ hay depósito reembolsable.
+
+⚠️ **Divergencia marca oficial ↔ implementación actual** (no alinear automáticamente, requiere decisión del usuario):
+- El sitio en producción usa **Inter** (no Poppins/Surgena).
+- Lima en producción: `#C8E830` (oficial: `#C3E82B`). Navy en producción: `#1C2333` / `#0D1117` / `#080D17`. Light section bg: `#DEEAF8`.
+
+## Producto (specs)
+
+- **Power bank**: 8.000 mAh · 3 cables integrados (USB-C, Lightning, micro-USB) · celda EVE.
+- **Estación compacta**: 6/12 power banks · pantalla 8".
+- **Estación tótem**: 24 power banks · pantalla publicitaria 21".
+
+## Contacto (oficial)
+
+- Email: `hola@charge2go.io` · Web: `charge2go.io` · Teléfonos: +34 638 314 792 / +34 687 242 903
 
 ## Business context
 
