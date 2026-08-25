@@ -528,6 +528,26 @@ details.sector[open] { border-color: rgba(200,232,48,0.2); background: rgba(200,
 .faq-item[open] summary::after { content: '−'; }
 .faq-item[open] { border-color: rgba(200,232,48,0.2); background: rgba(200,232,48,0.03); }
 .faq-item p { padding: 0 24px 20px; font-size: 14px; color: rgba(222,234,248,0.7); line-height: 1.7; }
+.faq-item p a { color: #C8E830; text-decoration: underline; text-underline-offset: 2px; }
+
+/* ─── BLOG TEASER ─────────────────────────────────────────────── */
+.blog-teaser { padding: 100px 80px; background: #080D17; }
+.blog-teaser-inner { max-width: 1100px; margin: 0 auto; }
+.blog-teaser .eyebrow { color: #C8E830; }
+.blog-teaser h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 800; letter-spacing: -1px; color: #F0F5FF; margin-bottom: 48px; }
+.blog-teaser-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin-bottom: 32px; }
+.blog-teaser-card {
+  display: block; padding: 28px; border-radius: 16px; text-decoration: none;
+  background: #121A2B; border: 1px solid rgba(255,255,255,0.07); transition: transform .2s, border-color .2s;
+}
+.blog-teaser-card:hover { transform: translateY(-4px); border-color: rgba(200,232,48,0.2); }
+.blog-teaser-card h3 { font-size: 17px; font-weight: 700; color: #F0F5FF; margin-bottom: 8px; line-height: 1.35; }
+.blog-teaser-card p { font-size: 13px; color: rgba(222,234,248,0.6); line-height: 1.6; }
+.blog-teaser-link { font-size: 14px; font-weight: 700; color: #C8E830; text-decoration: none; }
+.blog-teaser-link:hover { text-decoration: underline; }
+@media (max-width: 720px) {
+  .blog-teaser-grid { grid-template-columns: 1fr; }
+}
 
 /* ─── CONTACT ─────────────────────────────────────────────────── */
 .contact { padding: 100px 80px; background: #0C1120; }
@@ -988,11 +1008,11 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
       </details>
       <details class="faq-item">
         <summary>¿Dónde puedo alquilar una batería externa en Madrid?</summary>
-        <p>Las estaciones de alquiler de baterías externas de charge2go están disponibles en locales de hostelería, gimnasios, hoteles y espacios de ocio de Madrid. Puedes localizar el punto más cercano a través de nuestros locales colaboradores.</p>
+        <p>Las estaciones de alquiler de baterías externas de charge2go están disponibles en locales de hostelería, gimnasios, hoteles y espacios de ocio de Madrid. Puedes localizar el punto más cercano a través de nuestros locales colaboradores. Más detalles en <a href="/blog/donde-alquilar-power-bank-bateria-externa/">cómo alquilar una powerbank cerca de ti</a>.</p>
       </details>
       <details class="faq-item">
         <summary>¿Cuánto cuesta alquilar una batería externa?</summary>
-        <p>El alquiler de una batería externa con charge2go se cobra por tiempo de uso: desde 2,50 € por 30 minutos o desde 3 € por hora, según el local. Al recoger se retiene un depósito reembolsable y, al devolver la powerbank, se calcula el tiempo de uso real y se te reembolsa la diferencia. Pago contactless en la estación, sin app ni registro previo.</p>
+        <p>El alquiler de una batería externa con charge2go se cobra por tiempo de uso: desde 2,50 € por 30 minutos o desde 3 € por hora, según el local. Al recoger se retiene un depósito reembolsable y, al devolver la powerbank, se calcula el tiempo de uso real y se te reembolsa la diferencia. Pago contactless en la estación, sin app ni registro previo. Desglose completo en <a href="/blog/cuanto-cuesta-alquilar-una-powerbank/">cuánto cuesta alquilar una powerbank en España</a>.</p>
       </details>
       <details class="faq-item">
         <summary>¿Qué es una estación de alquiler de powerbanks?</summary>
@@ -1003,6 +1023,25 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
         <p>Depende del uso. Si necesitas carga puntual cuando estás fuera de casa, alquilar una batería externa es más económico y práctico: pagas solo por el tiempo que la usas, no tienes que cargarla ni llevarla encima. Comprarla tiene sentido si la necesitas a diario.</p>
       </details>
     </div>
+  </div>
+</section>
+
+<!-- BLOG TEASER -->
+<section class="blog-teaser" id="blog-teaser">
+  <div class="blog-teaser-inner">
+    <span class="eyebrow fade-up">Blog</span>
+    <h2 class="fade-up d1">Guías sobre alquiler de powerbanks.</h2>
+    <div class="blog-teaser-grid fade-up d2">
+      <a class="blog-teaser-card" href="/blog/cuanto-cuesta-alquilar-una-powerbank/">
+        <h3>¿Cuánto cuesta alquilar una powerbank en España?</h3>
+        <p>Precios, depósito reembolsable y cómo funciona el pago contactless sin app.</p>
+      </a>
+      <a class="blog-teaser-card" href="/blog/donde-alquilar-power-bank-bateria-externa/">
+        <h3>¿Sin batería? Cómo alquilar una powerbank cerca de ti</h3>
+        <p>Dónde encontrar una estación de alquiler y cómo funciona en segundos.</p>
+      </a>
+    </div>
+    <a class="blog-teaser-link fade-up d3" href="/blog/">Ver todos los artículos →</a>
   </div>
 </section>
 

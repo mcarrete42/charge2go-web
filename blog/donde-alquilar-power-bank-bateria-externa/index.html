@@ -111,12 +111,14 @@ html { scroll-behavior: smooth; }
 body { font-family: 'Inter', sans-serif; background: #080D17; color: #E8EDF2; overflow-x: hidden; line-height: 1.65; }
 
 /* NAV */
-nav {
+#navbar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 18px 60px; background: rgba(8,13,23,0.92);
+  padding: 18px 60px; background: rgba(8,13,23,0.85);
   backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: background .3s;
 }
+#navbar.scrolled { background: rgba(8,13,23,0.97); }
 .logo-img { height: 30px; width: auto; display: block; }
 .nav-links { display: flex; gap: 32px; list-style: none; }
 .nav-links a { color: #DEEAF8; text-decoration: none; font-size: 14px; font-weight: 500; position: relative; padding-bottom: 2px; }
@@ -186,7 +188,7 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
 .footer-legal a:hover { color: rgba(222,234,248,0.7); }
 
 @media (max-width: 768px) {
-  nav { padding: 14px 20px; }
+  #navbar { padding: 14px 20px; }
   .nav-links { display: none; }
   .nav-cta { display: none; }
   .nav-hamburger { display: flex; }
@@ -200,11 +202,12 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
 <body>
 
 <!-- NAV -->
-<nav>
+<nav id="navbar">
   <a href="/"><img src="/assets/images/logo.png" alt="charge2go — alquiler de powerbanks" class="logo-img" width="645" height="138"></a>
   <ul class="nav-links">
     <li><a href="/#como-funciona">Cómo funciona</a></li>
     <li><a href="/#partners">Para colaboradores</a></li>
+    <li><a href="/#faq">Preguntas frecuentes</a></li>
     <li><a href="/blog/">Blog</a></li>
     <li><a href="/#contacto">Contacto</a></li>
   </ul>
@@ -324,6 +327,8 @@ footer { background: #080D17; border-top: 1px solid rgba(255,255,255,0.06); padd
   document.getElementById('nav-open').addEventListener('click', () => { mnav.classList.add('open'); document.body.style.overflow = 'hidden'; });
   document.getElementById('nav-close').addEventListener('click', () => { mnav.classList.remove('open'); document.body.style.overflow = ''; });
   mnav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mnav.classList.remove('open'); document.body.style.overflow = ''; }));
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60));
 </script>
 
 <!-- FOOTER -->
