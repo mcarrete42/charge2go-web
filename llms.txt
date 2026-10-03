@@ -1,6 +1,6 @@
 # charge2go
 
-> charge2go instala gratis máquinas de alquiler de baterías externas (powerbanks) en bares, discotecas, restaurantes, cafeterías, hoteles, gimnasios, hospitales y clínicas, centros comerciales, estaciones, aeropuertos y eventos o festivales en España. El local no invierte ni gestiona nada: charge2go aporta la máquina, el mantenimiento y el soporte, y el negocio genera ingresos pasivos. Los clientes finales alquilan una powerbank pagando por tiempo de uso (desde 2,50 € por 30 minutos o 3 € por hora, según el local) con pago contactless, sin app ni registro; al recoger se retiene un depósito reembolsable y, al devolver, se calcula el tiempo de uso real y se reembolsa la diferencia. Cuenta con más de 50 estaciones activas en España (Madrid, Barcelona y Segovia) y está en expansión por todo el país.
+> charge2go instala gratis máquinas de alquiler de baterías externas (powerbanks) en bares, discotecas, restaurantes, cafeterías, hoteles, gimnasios, hospitales y clínicas, centros comerciales, estaciones, aeropuertos y eventos o festivales en España. El local no invierte ni gestiona nada: charge2go aporta la máquina, el mantenimiento y el soporte, y el negocio genera ingresos pasivos. Los clientes finales alquilan una powerbank pagando por tiempo de uso (desde 2,50 € por 30 minutos o 3 € por hora, según el local) con pago contactless, sin app ni registro; al recoger se retiene un depósito reembolsable y, al devolver, se calcula el tiempo de uso real y se reembolsa la diferencia. Cuenta con más de 50 estaciones activas en España (Madrid, Barcelona, Segovia, Ibiza y Andalucía) y está en expansión por todo el país.
 
 ## Cómo funciona
 - Para el local (partner): instalación gratuita, cero costes fijos, sin permanencia, mantenimiento y soporte gestionados por charge2go, ingresos pasivos desde el primer día.
@@ -25,7 +25,7 @@ charge2go ofrece alquiler de powerbanks (baterías externas) en cualquier local 
 
 ## Cobertura
 - Más de 50 estaciones activas en España, en expansión por todo el país.
-- Ciudades operativas: Madrid, Barcelona y Segovia.
+- Zonas operativas: Madrid, Barcelona, Segovia, Ibiza y Andalucía.
 
 ## Locales destacados (ejemplos reales)
 - Sala Apolo — Barcelona (sala/discoteca de referencia).

@@ -80,7 +80,7 @@ Root assets: `favicon.png` (32×32), `apple-touch-icon.png` (180×180)
 
 - Model: power bank rental by time of use — **from 2,50€/30min OR 3€/hour, depending on the venue** (each station applies one of the two tariffs). A **refundable deposit** is held on pickup; on return the real usage time is calculated and the difference is refunded. No app required, contactless. **No "15€/day max" anymore** — do not reintroduce it.
 - For venue partners: free machine installation, passive revenue share (up to 20%), zero management.
-- Early stage — **active in Madrid and Barcelona** (Barcelona live since 2026-06, e.g. Sala Apolo). Valencia/Sevilla still "próximamente". Do NOT add fictitious stats or cities beyond the real active ones.
+- Early stage — **active in Madrid, Barcelona, Segovia, Ibiza and Andalucía** (Barcelona live since 2026-06, e.g. Sala Apolo; Ibiza and Andalucía added to the map 2026-10-03). Valencia still "próximamente". Do NOT add fictitious stats or cities beyond the real active ones.
 - Key CTA: **"Pide una máquina gratis"** / **"Quiero mi máquina gratis →"**
 
 ## SEO state (current)
@@ -133,7 +133,10 @@ Root assets: `favicon.png` (32×32), `apple-touch-icon.png` (180×180)
 Mapa estático CSS (sin Leaflet). Pines posicionados por porcentaje sobre imagen de España:
 - Madrid: `left:41%; top:43%` — **Activo ahora**
 - Barcelona: `left:84%; top:31%` — **Activo ahora**
-- Valencia, Sevilla — **Próximamente**
+- Segovia: `left:33%; top:33%` — **Activo ahora**
+- Ibiza: `left:81%; top:63%` — **Activo ahora** (CA: Eivissa)
+- Andalucía: `left:37%; top:82%` — **Activo ahora** (pin genérico de región; CA/EN: Andalusia)
+- Contador: "5 Zonas activas" (no "ciudades", porque Andalucía es una región)
 
 ## SEO workflow
 

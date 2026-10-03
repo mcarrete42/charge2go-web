@@ -114,8 +114,8 @@ Locales: Sala Apolo (Barcelona) · La Fontana de Oro (Madrid) · Hotel Cándido 
 
 ## Mapa
 H2: Expandiendo la red de estaciones por toda España.
-Subtítulo: Ya operamos en Madrid, Barcelona y Segovia, y sumamos nuevos locales cada mes.
-Cifras: +50 estaciones activas · 3 ciudades activas · 6–12 power banks por máquina · <30' instalación
+Subtítulo: Ya operamos en Madrid, Barcelona, Segovia, Ibiza y Andalucía, y sumamos nuevos locales cada mes.
+Cifras: +50 estaciones activas · 5 zonas activas · 6–12 power banks por máquina · <30' instalación
 
 ---
 

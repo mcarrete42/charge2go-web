@@ -61,7 +61,7 @@ Depende del uso. Si solo necesitas carga **puntual** cuando estás fuera de casa
 
 ## ¿Dónde puedo alquilar una power bank?
 
-Puedes alquilar una power bank en cualquiera de las estaciones charge2go instaladas en locales con afluencia de público —bares, discotecas, restaurantes, hoteles, gimnasios, hospitales y eventos— en **Madrid, Barcelona y Segovia**, con nuevos puntos cada mes.
+Puedes alquilar una power bank en cualquiera de las estaciones charge2go instaladas en locales con afluencia de público —bares, discotecas, restaurantes, hoteles, gimnasios, hospitales y eventos— en **Madrid, Barcelona, Segovia, Ibiza y Andalucía**, con nuevos puntos cada mes.
 
 > Te contamos dónde encontrar una estación ahora mismo y cómo funciona paso a paso en esta guía: [¿Sin batería? Cómo alquilar una power bank cerca de ti](https://charge2go.io/blog/donde-alquilar-power-bank-bateria-externa/).
 

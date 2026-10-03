@@ -75,7 +75,7 @@ Sí. Cada power bank lleva **tres cables integrados —USB-C, Lightning (iPhone)
 
 ## ¿Dónde puedo alquilar una power bank ahora mismo?
 
-La red charge2go está en locales con afluencia de público —**bares, discotecas, restaurantes, hoteles, gimnasios, hospitales y eventos**— y crece cada mes. Ahora mismo operamos en **Madrid, Barcelona y Segovia**. Algunos sitios donde ya puedes encontrar una estación:
+La red charge2go está en locales con afluencia de público —**bares, discotecas, restaurantes, hoteles, gimnasios, hospitales y eventos**— y crece cada mes. Ahora mismo operamos en **Madrid, Barcelona, Segovia, Ibiza y Andalucía**. Algunos sitios donde ya puedes encontrar una estación:
 
 - **Sala Apolo** — Barcelona · sala y discoteca de referencia
 - **La Fontana de Oro** — Madrid · pub histórico en pleno centro
@@ -111,7 +111,7 @@ Sí. Cada batería incluye cables USB-C, Lightning y micro-USB integrados, compa
 
 ### ¿Dónde puedo alquilar una power bank?
 
-En locales de la red charge2go en Madrid, Barcelona y Segovia —bares, discotecas, hoteles, gimnasios y más—, con nuevos puntos cada mes.
+En locales de la red charge2go en Madrid, Barcelona, Segovia, Ibiza y Andalucía —bares, discotecas, hoteles, gimnasios y más—, con nuevos puntos cada mes.
 
 ---
 
