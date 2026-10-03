@@ -44,7 +44,7 @@ Ofrece un servicio de alta demanda sin inversión, sin gestión, sin complicacio
 
 ## Hero Definición
 <!-- Frase descriptiva que Google usa como snippet en búsquedas de marca -->
-charge2go ofrece el servicio de alquiler de powerbanks (baterías externas) para bares, restaurantes, discotecas, hoteles, gimnasios, hospitales y eventos de toda España.
+charge2go ofrece el servicio de alquiler de powerbanks (baterías externas o portátiles) para bares, restaurantes, discotecas, hoteles, gimnasios, hospitales y eventos de toda España.
 
 ## Hero CTA Principal
 <!-- Botón principal del hero (y del menú) -->
@@ -71,7 +71,7 @@ PASO 3 — Devuelve cuando quieras: Devuelve en el mismo local o en cualquier ot
 
 ## Producto
 H2: La batería externa que tus clientes pueden alquilar.
-Texto: Nuestra power bank viene lista para usar. Sin adaptadores, sin cables olvidados. Funciona con cualquier móvil y se devuelve en cualquier estación de la red.
+Texto: Nuestra power bank (batería portátil) viene lista para usar. Sin adaptadores, sin cables olvidados. Funciona con cualquier móvil y se devuelve en cualquier estación de la red.
 Features: Cables incluidos: USB-C, Lightning y micro-USB · Compatible con cualquier smartphone · Baterías de 8000mAh de carga ultra rápida · Sin app ni registro — paga y ya
 
 ---
@@ -161,7 +161,7 @@ P10: ¿Cuánto cuesta alquilar una batería externa?
 R: El alquiler de una batería externa con charge2go se cobra por tiempo de uso: desde 2,50 € por 30 minutos o desde 3 € por hora, según el local. Al recoger se retiene un depósito reembolsable y, al devolver la powerbank, se calcula el tiempo de uso real y se te reembolsa la diferencia. Pago contactless en la estación, sin app ni registro previo.
 
 P11: ¿Qué es una estación de alquiler de powerbanks?
-R: Una estación de alquiler de powerbanks es un dispositivo instalado en un local público que permite a los clientes tomar prestada una batería externa, cargar su móvil y devolverla en cualquier estación de la red. charge2go instala estas estaciones de forma gratuita en negocios con alta afluencia de personas.
+R: Una estación de alquiler de powerbanks es un dispositivo instalado en un local público que permite a los clientes tomar prestada una batería externa (también llamada batería portátil, powerbank o banco de carga), cargar su móvil y devolverla en cualquier estación de la red. charge2go instala estas estaciones de forma gratuita en negocios con alta afluencia de personas.
 
 P12: ¿Es mejor alquilar una batería externa o comprarla?
 R: Depende del uso. Si necesitas carga puntual cuando estás fuera de casa, alquilar una batería externa es más económico y práctico: pagas solo por el tiempo que la usas, no tienes que cargarla ni llevarla encima. Comprarla tiene sentido si la necesitas a diario.
