@@ -140,6 +140,8 @@ Mapa estático CSS (sin Leaflet). Pines posicionados por porcentaje sobre imagen
 El usuario edita `seo.md` para cambiar copy/SEO. Cuando diga "actualiza desde seo.md":
 1. Leer `seo.md`
 2. Aplicar cambios a `index.html` (title, description, H1, H2s, FAQs, schema)
+   - Actualizar las filas afectadas en `_i18n/build.py` (traducción CA/EN) y ejecutar `python3 _i18n/build.py`
+   - Y al revés: cualquier cambio de copy hecho directamente en `index.html` debe reflejarse también en `seo.md` (se desincronizó en marzo–octubre 2026 por no hacerlo)
 3. Commit + push
 
 ## Plan Mode Default
