@@ -101,6 +101,8 @@ Root assets: `favicon.png` (32×32), `apple-touch-icon.png` (180×180)
 | File | Status | Notes |
 |------|--------|-------|
 | `index.html` | ✅ Live | Página principal |
+| `ca/index.html` | ✅ Live | Home en catalán — **generada** por `_i18n/build.py` |
+| `en/index.html` | ✅ Live | Home en inglés — **generada** por `_i18n/build.py` |
 | `privacidad.html` | ✅ Live | GDPR — noindex |
 | `aviso-legal.html` | ✅ Live | LSSI — noindex |
 | `cookies.html` | ✅ Live | Cookies GA4 + Formspree — noindex |
@@ -109,6 +111,14 @@ Root assets: `favicon.png` (32×32), `apple-touch-icon.png` (180×180)
 | `gimnasios.html` | 🔒 Local only | Sector page — no publicada |
 | `hospitales.html` | 🔒 Local only | Sector page — no publicada |
 | `eventos.html` | 🔒 Local only | Sector page — no publicada |
+
+## Idiomas (ES / CA / EN)
+
+- `index.html` (español) es la fuente. `ca/index.html` y `en/index.html` se generan con `python3 _i18n/build.py` — **nunca editarlas a mano**.
+- **Tras cualquier cambio de texto en `index.html`, ejecutar `python3 _i18n/build.py`.** Si un texto español cambió, el script falla indicando qué fila de `STRINGS` actualizar (es, ca, en).
+- Las 3 versiones llevan `hreflang` (es/ca/en + x-default→/) y selector de idioma con enlaces reales (indexables).
+- Rutas a assets y páginas legales en `index.html` deben ser absolutas (`/assets/...`, `/privacidad.html`) para que funcionen desde /ca/ y /en/.
+- `_i18n/` empieza por `_` para que Jekyll (GitHub Pages) no lo publique. Blog y páginas legales siguen solo en español.
 
 ## Form (index.html)
 

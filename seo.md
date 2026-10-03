@@ -122,3 +122,15 @@ Botón envío: Quiero mi máquina gratis →
 Trust badges: ✓ Sin permanencia · ✓ Sin costes · ✓ Instalación en 30 min
 Confirmación título: ¡Perfecto! Hemos recibido tu solicitud.
 Confirmación subtítulo: Nuestro equipo te contactará en menos de 24h para coordinar la instalación.
+
+---
+
+## Versiones en catalán e inglés (/ca/ y /en/)
+<!-- Las genera _i18n/build.py a partir de index.html. NO editar ca/index.html ni en/index.html a mano. -->
+<!-- Para cambiar un texto traducido, edita su fila en STRINGS dentro de _i18n/build.py y ejecuta: python3 _i18n/build.py -->
+CA Title: charge2go | Lloguer de powerbanks (bateries externes)
+CA Description: Xarxa d'estacions de lloguer de powerbanks (bancs d'energia) per a bars, discoteques, restaurants, hotels i esdeveniments. Sense app ni costos per al local.
+CA H1: Lloguer de bateries externes per als teus clients
+EN Title: charge2go | Power bank rental stations in Spain
+EN Description: Power bank rental stations for bars, clubs, restaurants, hotels, gyms and events in Spain. No app needed and zero cost for the venue.
+EN H1: Power bank rental for your customers
